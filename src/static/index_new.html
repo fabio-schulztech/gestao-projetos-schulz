@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Projetos - Schulz Tech</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,10 +16,10 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh;
-            color: #e0e0e0;
+            color: #f8fafc;
         }
         
         .container {
@@ -26,25 +29,30 @@
         }
         
         .header {
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid #404040;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
         }
         
         .header h1 {
-            color: #00d4aa;
-            margin-bottom: 10px;
-            font-size: 2.2rem;
-            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 12px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .header p {
-            color: #b0b0b0;
-            font-size: 1.1rem;
+            color: #94a3b8;
+            font-size: 1.125rem;
+            font-weight: 500;
         }
         
         .stats {
@@ -55,73 +63,76 @@
         }
         
         .stat-card {
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 24px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid #404040;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
             transition: all 0.3s ease;
         }
         
         .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
-            border-color: #00d4aa;
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
         }
         
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #00d4aa;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: #3b82f6;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
         }
         
         .stat-label {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            font-weight: 500;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .main-content {
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid #404040;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
         }
         
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #404040;
+            gap: 12px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #334155;
         }
         
         .tab {
-            padding: 12px 24px;
+            padding: 16px 28px;
             background: none;
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            color: #b0b0b0;
+            font-weight: 600;
+            color: #94a3b8;
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
-            border-radius: 8px 8px 0 0;
+            border-radius: 12px 12px 0 0;
         }
         
         .tab.active {
-            color: #00d4aa;
-            border-bottom-color: #00d4aa;
-            background: rgba(0, 212, 170, 0.1);
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
         }
         
         .tab:hover {
-            color: #00d4aa;
-            background: rgba(0, 212, 170, 0.05);
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
         }
         
         .tab-content {
@@ -139,19 +150,19 @@
         }
         
         .project-card {
-            background: rgba(40, 40, 40, 0.95);
-            border: 1px solid #404040;
-            border-radius: 12px;
-            padding: 20px;
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
-            border-color: #00d4aa;
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
         }
         
         .project-card::before {
@@ -160,8 +171,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00d4aa, #00a8cc);
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
         }
         
         .project-header {
@@ -172,15 +183,16 @@
         }
         
         .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #e0e0e0;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
         }
         
         .project-category {
-            font-size: 0.9rem;
-            color: #b0b0b0;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-weight: 500;
         }
         
         .priority-badge {
@@ -191,27 +203,28 @@
         }
         
         .priority-alta {
-            background: rgba(255, 99, 99, 0.2);
-            color: #ff6363;
-            border: 1px solid #ff6363;
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
         }
         
         .priority-média {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-            border: 1px solid #ffc107;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
         }
         
         .priority-baixa {
-            background: rgba(0, 212, 170, 0.2);
-            color: #00d4aa;
-            border: 1px solid #00d4aa;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid #22c55e;
         }
         
         .project-description {
-            color: #b0b0b0;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
         .progress-container {
@@ -222,24 +235,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 0.9rem;
-            color: #b0b0b0;
+            color: #94a3b8;
+            font-weight: 600;
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+            height: 10px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 6px;
             overflow: hidden;
             position: relative;
+            border: 1px solid #334155;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #00d4aa, #00a8cc);
-            border-radius: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 6px;
             transition: width 0.8s ease;
             position: relative;
         }
@@ -261,8 +276,8 @@
         }
         
         .progress-percentage {
-            font-weight: 600;
-            color: #00d4aa;
+            font-weight: 700;
+            color: #3b82f6;
         }
         
         .project-metrics {
@@ -278,14 +293,17 @@
         
         .metric-label {
             font-size: 0.8rem;
-            color: #b0b0b0;
-            margin-bottom: 5px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .metric-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f8fafc;
         }
         
         .project-actions {
@@ -303,41 +321,44 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #00d4aa, #00a8cc);
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
             color: white;
             border: none;
-            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            font-weight: 600;
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #00a8cc, #00d4aa);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #b0b0b0;
-            border: 1px solid #404040;
+            background: rgba(30, 41, 59, 0.8);
+            color: #94a3b8;
+            border: 1px solid #334155;
+            font-weight: 600;
         }
         
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #e0e0e0;
-            border-color: #00d4aa;
+            background: rgba(30, 41, 59, 1);
+            color: #f8fafc;
+            border-color: #3b82f6;
         }
         
         .btn-danger {
-            background: linear-gradient(135deg, #ff6363, #ff4757);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border: none;
-            box-shadow: 0 4px 15px rgba(255, 99, 99, 0.3);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            font-weight: 600;
         }
         
         .btn-danger:hover {
-            background: linear-gradient(135deg, #ff4757, #ff6363);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(255, 99, 99, 0.4);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
         }
         
         .modal {
@@ -358,14 +379,14 @@
         }
         
         .modal-content {
-            background: rgba(30, 30, 30, 0.98);
+            background: rgba(15, 23, 42, 0.98);
             border-radius: 12px;
             padding: 30px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
@@ -379,7 +400,7 @@
         .modal-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #e0e0e0;
+            color: #f8fafc;
         }
         
         .close-btn {
@@ -387,7 +408,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #b0b0b0;
+            color: #94a3b8;
             transition: color 0.3s ease;
         }
         
@@ -403,17 +424,17 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            color: #e0e0e0;
+            color: #f8fafc;
         }
         
         .form-input {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -427,11 +448,11 @@
         .form-select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -444,13 +465,13 @@
         .form-textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             min-height: 100px;
             resize: vertical;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -508,14 +529,14 @@
         }
         
         .modal-content {
-            background: rgba(30, 30, 30, 0.98);
+            background: rgba(15, 23, 42, 0.98);
             border-radius: 12px;
             padding: 30px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
@@ -529,7 +550,7 @@
         .modal-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #e0e0e0;
+            color: #f8fafc;
         }
         
         .close-btn {
@@ -537,7 +558,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #b0b0b0;
+            color: #94a3b8;
             transition: color 0.3s ease;
         }
         
@@ -553,17 +574,17 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            color: #e0e0e0;
+            color: #f8fafc;
         }
         
         .form-input {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -577,11 +598,11 @@
         .form-select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -594,13 +615,13 @@
         .form-textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #404040;
+            border: 1px solid #334155;
             border-radius: 6px;
             font-size: 1rem;
             min-height: 100px;
             resize: vertical;
             background: rgba(40, 40, 40, 0.8);
-            color: #e0e0e0;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
         
@@ -618,23 +639,23 @@
         }
         
         .add-project-btn {
-            background: linear-gradient(135deg, #00d4aa, #00a8cc);
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .add-project-btn:hover {
-            background: linear-gradient(135deg, #00a8cc, #00d4aa);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
         @media (max-width: 768px) {

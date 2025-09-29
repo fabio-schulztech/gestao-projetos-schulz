@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Correção React #130</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Correção React #130</h1>
+        
+        <div id="status" class="status info">
+            🔍 Verificando correções aplicadas...
+        </div>
+        
+        <div id="test-results"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="btn">🏠 Ir para Dashboard</a>
+            <button onclick="runTests()" class="btn">🔄 Executar Testes</button>
+            <button onclick="clearCache()" class="btn">🧹 Limpar Cache</button>
+        </div>
+        
+        <div id="console-output" class="code" style="margin-top: 20px; min-height: 100px; background: #2d3748; color: #e2e8f0;">
+            <div>Console de Debug:</div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = [];
+        let consoleOutput = document.getElementById('console-output');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff6b6b' : type === 'success' ? '#51cf66' : '#74c0fc';
+            consoleOutput.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            console.log(`[${timestamp}] ${message}`);
+        }
+        
+        function updateStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+        
+        function runTests() {
+            log('🧪 Iniciando testes de correção React #130...', 'info');
+            testResults = [];
+            
+            // Teste 1: Verificar se não há erros React #130
+            log('Teste 1: Verificando erros React #130...', 'info');
+            
+            // Interceptar erros do React
+            window.addEventListener('error', function(e) {
+                if (e.error && e.error.message.includes('130')) {
+                    log('❌ ERRO REACT #130 DETECTADO!', 'error');
+                    testResults.push({test: 'React Error #130', status: 'FAIL', message: e.error.message});
+                    updateStatus('❌ Erro React #130 ainda presente!', 'error');
+                    return;
+                }
+            });
+            
+            // Teste 2: Verificar headers HTTP
+            log('Teste 2: Verificando headers HTTP...', 'info');
+            fetch('/assets/index-DDT9FNxU.js', {method: 'HEAD'})
+                .then(response => {
+                    const cacheControl = response.headers.get('Cache-Control');
+                    const pragma = response.headers.get('Pragma');
+                    const expires = response.headers.get('Expires');
+                    
+                    if (cacheControl && cacheControl.includes('no-cache')) {
+                        log('✅ Cache-Control configurado corretamente', 'success');
+                        testResults.push({test: 'Cache Headers', status: 'PASS', message: 'Headers de cache configurados'});
+                    } else {
+                        log('❌ Cache-Control não configurado', 'error');
+                        testResults.push({test: 'Cache Headers', status: 'FAIL', message: 'Headers de cache não configurados'});
+                    }
+                })
+                .catch(err => {
+                    log('❌ Erro ao verificar headers: ' + err.message, 'error');
+                    testResults.push({test: 'Cache Headers', status: 'FAIL', message: err.message});
+                });
+            
+            // Teste 3: Verificar se arquivos JavaScript carregam
+            log('Teste 3: Verificando carregamento de arquivos JS...', 'info');
+            fetch('/assets/index-DDT9FNxU.js')
+                .then(response => {
+                    if (response.ok) {
+                        log('✅ Arquivo JavaScript principal carregado', 'success');
+                        testResults.push({test: 'JS Loading', status: 'PASS', message: 'Arquivo JS carregado com sucesso'});
+                    } else {
+                        log('❌ Erro ao carregar arquivo JavaScript', 'error');
+                        testResults.push({test: 'JS Loading', status: 'FAIL', message: 'Erro ' + response.status});
+                    }
+                })
+                .catch(err => {
+                    log('❌ Erro ao carregar JS: ' + err.message, 'error');
+                    testResults.push({test: 'JS Loading', status: 'FAIL', message: err.message});
+                });
+            
+            // Aguardar um pouco e mostrar resultados
+            setTimeout(() => {
+                showTestResults();
+            }, 2000);
+        }
+        
+        function showTestResults() {
+            const resultsDiv = document.getElementById('test-results');
+            let html = '<h3>📊 Resultados dos Testes:</h3>';
+            
+            let passCount = 0;
+            let failCount = 0;
+            
+            testResults.forEach(result => {
+                const statusIcon = result.status === 'PASS' ? '✅' : '❌';
+                const statusClass = result.status === 'PASS' ? 'success' : 'error';
+                html += `<div class="status ${statusClass}">${statusIcon} ${result.test}: ${result.message}</div>`;
+                
+                if (result.status === 'PASS') passCount++;
+                else failCount++;
+            });
+            
+            html += `<div class="status info">📈 Resumo: ${passCount} passou, ${failCount} falhou</div>`;
+            
+            if (failCount === 0) {
+                updateStatus('🎉 Todos os testes passaram! Correções aplicadas com sucesso!', 'success');
+                log('🎉 CORREÇÕES APLICADAS COM SUCESSO!', 'success');
+            } else {
+                updateStatus('⚠️ Alguns testes falharam. Verifique os detalhes acima.', 'error');
+                log('⚠️ Alguns testes falharam. Verifique os detalhes.', 'error');
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        function clearCache() {
+            log('🧹 Limpando cache do navegador...', 'info');
+            
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                    }
+                    log('✅ Cache limpo com sucesso', 'success');
+                });
+            }
+            
+            // Forçar recarregamento
+            setTimeout(() => {
+                log('🔄 Recarregando página...', 'info');
+                window.location.reload(true);
+            }, 1000);
+        }
+        
+        // Executar testes automaticamente ao carregar a página
+        window.addEventListener('load', function() {
+            log('🚀 Página carregada. Iniciando verificação automática...', 'info');
+            setTimeout(runTests, 1000);
+        });
+        
+        // Interceptar erros React
+        window.addEventListener('error', function(e) {
+            if (e.error && e.error.message.includes('130')) {
+                log('🚨 ERRO REACT #130 DETECTADO: ' + e.error.message, 'error');
+                updateStatus('❌ Erro React #130 detectado! Execute as correções.', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

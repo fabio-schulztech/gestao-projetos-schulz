@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug React Error #130</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .error-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .solution {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .code {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Debug do Erro React #130</h1>
+        
+        <div class="error-info">
+            <h3>❌ Erro Identificado:</h3>
+            <p><strong>Minified React error #130</strong> - Este erro ocorre quando o React não consegue identificar corretamente o tipo de um elemento.</p>
+        </div>
+
+        <div class="solution">
+            <h3>✅ Soluções Recomendadas:</h3>
+            
+            <h4>1. Verificar Importações e Exportações</h4>
+            <p>O erro geralmente ocorre por inconsistências entre import e export:</p>
+            
+            <div class="code">
+// ❌ INCORRETO - Mistura de default e named exports
+import MyComponent from './MyComponent'; // default import
+export { MyComponent }; // named export
+
+// ✅ CORRETO - Default export/import
+export default function MyComponent() { ... }
+import MyComponent from './MyComponent';
+
+// ✅ CORRETO - Named export/import  
+export function MyComponent() { ... }
+import { MyComponent } from './MyComponent';
+            </div>
+
+            <h4>2. Evitar Componentes como Propriedades de Classe</h4>
+            <div class="code">
+// ❌ PROBLEMÁTICO
+class App extends React.Component {
+  MyComponent = () => &lt;div&gt;Hello&lt;/div&gt;;
+  render() {
+    return &lt;this.MyComponent /&gt;;
+  }
+}
+
+// ✅ CORRETO
+class App extends React.Component {
+  render() {
+    const MyComponent = () => &lt;div&gt;Hello&lt;/div&gt;;
+    return &lt;MyComponent /&gt;;
+  }
+}
+            </div>
+
+            <h4>3. Verificar se Componentes Estão Definidos</h4>
+            <div class="code">
+// Verificar se o componente existe antes de usar
+const MyComponent = components.MyComponent;
+if (!MyComponent) {
+  console.error('MyComponent não foi encontrado');
+  return null;
+}
+            </div>
+        </div>
+
+        <div class="solution">
+            <h3>🔍 Próximos Passos:</h3>
+            <ol>
+                <li>Verificar o arquivo de build atual (index-DDT9FNxU.js)</li>
+                <li>Procurar por inconsistências de import/export</li>
+                <li>Verificar se todos os componentes estão sendo importados corretamente</li>
+                <li>Considerar rebuild do frontend se necessário</li>
+            </ol>
+        </div>
+
+        <div id="root"></div>
+    </div>
+
+    <script>
+        // Script para testar se o React está funcionando
+        const { useState } = React;
+        
+        function TestComponent() {
+            const [count, setCount] = useState(0);
+            
+            return React.createElement('div', {
+                style: { 
+                    marginTop: '20px', 
+                    padding: '20px', 
+                    border: '2px solid #007bff', 
+                    borderRadius: '8px',
+                    textAlign: 'center'
+                }
+            }, [
+                React.createElement('h3', { key: 'title' }, 'Teste do React'),
+                React.createElement('p', { key: 'count' }, `Contador: ${count}`),
+                React.createElement('button', {
+                    key: 'button',
+                    onClick: () => setCount(count + 1),
+                    style: {
+                        padding: '10px 20px',
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer'
+                    }
+                }, 'Incrementar')
+            ]);
+        }
+        
+        ReactDOM.render(React.createElement(TestComponent), document.getElementById('root'));
+    </script>
+</body>
+</html>

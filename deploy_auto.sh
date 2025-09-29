@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Script de Deploy com Correção React #130 - Gestão de Projetos Schulz Tech
-# Autor: Sistema Manus
-# Data: $(date)
+# Script de Deploy Automático - Detecta usuário automaticamente
+# Sistema de Gestão de Projetos Schulz Tech
 
 set -e
 
-echo "🚀 Iniciando deploy com correção React #130..."
+echo "🚀 Deploy Automático - Sistema de Gestão de Projetos"
+echo "===================================================="
 
 # Cores para output
 RED='\033[0;31m'
@@ -14,6 +14,10 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
+
+# Detectar usuário atual
+CURRENT_USER=$(whoami)
+CURRENT_GROUP=$(id -gn)
 
 # Variáveis
 PROJECT_NAME="gestao-projetos"
@@ -40,9 +44,12 @@ info() {
     echo -e "${BLUE}[INFO] $1${NC}"
 }
 
+log "Usuário detectado: $CURRENT_USER"
+log "Grupo detectado: $CURRENT_GROUP"
+
 # Verificar se está rodando como root
 if [[ $EUID -eq 0 ]]; then
-   error "Este script não deve ser executado como root. Use sudo apenas quando necessário."
+   error "Este script não deve ser executado como root. Execute como usuário normal."
 fi
 
 # Verificar se o Python3 está instalado
@@ -76,8 +83,7 @@ fi
 # Criar diretório do projeto
 log "Criando diretório do projeto..."
 sudo mkdir -p "$PROJECT_DIR"
-CURRENT_USER=$(whoami)
-sudo chown $CURRENT_USER:$CURRENT_USER "$PROJECT_DIR"
+sudo chown $CURRENT_USER:$CURRENT_GROUP "$PROJECT_DIR"
 
 # Copiar arquivos do projeto
 log "Copiando arquivos do projeto..."
@@ -223,17 +229,49 @@ else
     error "❌ Arquivo JavaScript principal não encontrado!"
 fi
 
+# Criar arquivo de serviço systemd personalizado
+log "Criando arquivo de serviço systemd..."
+cat > gestao-projetos.service << EOF
+[Unit]
+Description=Gestão de Projetos Schulz Tech
+After=network.target
+
+[Service]
+Type=simple
+User=$CURRENT_USER
+WorkingDirectory=$PROJECT_DIR
+Environment=PATH=$PROJECT_DIR/venv/bin
+ExecStart=$PROJECT_DIR/venv/bin/python src/main.py
+Restart=always
+RestartSec=10
+
+# Logs
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=gestao-projetos
+
+# Segurança
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=$PROJECT_DIR
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 # Configurar serviço systemd
 log "Configurando serviço systemd..."
-sudo cp "$SERVICE_NAME" "/etc/systemd/system/"
+sudo cp gestao-projetos.service "/etc/systemd/system/"
 sudo systemctl daemon-reload
 sudo systemctl enable "$SERVICE_NAME"
 
 # Configurar permissões
 log "Configurando permissões..."
-sudo chown -R $CURRENT_USER:$CURRENT_USER "$PROJECT_DIR"
-chmod +x "$PROJECT_DIR/deploy.sh"
-chmod +x "$PROJECT_DIR/fix_server_react_error.py"
+sudo chown -R $CURRENT_USER:$CURRENT_GROUP "$PROJECT_DIR"
+chmod +x "$PROJECT_DIR/deploy.sh" 2>/dev/null || true
+chmod +x "$PROJECT_DIR/fix_server_react_error.py" 2>/dev/null || true
 
 # Iniciar serviço
 log "Iniciando serviço..."
@@ -252,15 +290,15 @@ fi
 # Testar API
 log "Testando API..."
 sleep 2
-if curl -s http://localhost:7744/api/projects > /dev/null; then
-    log "API respondendo corretamente na porta 7744 ✓"
+if curl -s http://localhost:53000/api/projects > /dev/null; then
+    log "API respondendo corretamente na porta 53000 ✓"
 else
     warning "API não está respondendo. Verifique os logs."
 fi
 
 # Testar arquivos estáticos
 log "Testando arquivos estáticos..."
-if curl -s -I http://localhost:7744/assets/index-DDT9FNxU.js | grep -q "200 OK"; then
+if curl -s -I http://localhost:53000/assets/index-DDT9FNxU.js | grep -q "200 OK"; then
     log "Arquivos JavaScript sendo servidos corretamente ✓"
 else
     warning "Problema ao servir arquivos JavaScript"
@@ -272,7 +310,8 @@ echo
 info "📋 Informações importantes:"
 echo "   • Projeto instalado em: $PROJECT_DIR"
 echo "   • Serviço: $SERVICE_NAME"
-echo "   • Porta: 7744"
+echo "   • Porta: 53000"
+echo "   • Usuário: $CURRENT_USER"
 echo "   • Logs: sudo journalctl -u $SERVICE_NAME -f"
 echo "   • Status: sudo systemctl status $SERVICE_NAME"
 echo "   • Debug React: http://seu-servidor/react_debug.html"

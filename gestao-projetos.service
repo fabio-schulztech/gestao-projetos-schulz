@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=ubuntu
+User=fabio
 WorkingDirectory=/opt/gestao-projetos
 Environment=PATH=/opt/gestao-projetos/venv/bin
 ExecStart=/opt/gestao-projetos/venv/bin/python src/main.py

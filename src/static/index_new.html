@@ -482,11 +482,139 @@
         }
         
         .success {
-            background: #c6f6d5;
-            color: #38a169;
+            background: rgba(0, 212, 170, 0.2);
+            color: #00d4aa;
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 20px;
+            border: 1px solid #00d4aa;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: rgba(30, 30, 30, 0.98);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #404040;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #b0b0b0;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #00d4aa;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #404040;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+            background: rgba(50, 50, 50, 0.8);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #404040;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #404040;
+            border-radius: 6px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+            background: rgba(50, 50, 50, 0.8);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
         
         .add-project-btn {
@@ -594,6 +722,83 @@
                     <div class="loading">Carregando projetos de inovação...</div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- Modal para criar/editar projeto -->
+    <div class="modal" id="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Novo Projeto</h2>
+                <button class="close-btn" onclick="closeProjectModal()">&times;</button>
+            </div>
+            <form id="project-form">
+                <input type="hidden" id="project-id" value="">
+                
+                <div class="form-group">
+                    <label class="form-label" for="project-name">Nome do Projeto *</label>
+                    <input type="text" class="form-input" id="project-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="project-category">Categoria *</label>
+                    <select class="form-select" id="project-category" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="sensores">⚙️ Sensores e Monitoramento</option>
+                        <option value="rastreabilidade">📡 Rastreabilidade e Operações</option>
+                        <option value="inovacao">🚀 Inovação e Projetos Especiais</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="project-description">Descrição</label>
+                    <textarea class="form-textarea" id="project-description" placeholder="Descreva o objetivo e escopo do projeto..."></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="project-stage">Etapa Atual</label>
+                        <select class="form-select" id="project-stage">
+                            <option value="1">1. Planejamento</option>
+                            <option value="2">2. Desenvolvimento</option>
+                            <option value="3">3. Testes</option>
+                            <option value="4">4. Implementação</option>
+                            <option value="5">5. Finalização</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-priority">Prioridade</label>
+                        <select class="form-select" id="project-priority">
+                            <option value="baixa">Baixa</option>
+                            <option value="média">Média</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="project-roi">ROI Estimado (%)</label>
+                        <input type="number" class="form-input" id="project-roi" min="0" max="100" value="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-effort">Esforço (horas)</label>
+                        <input type="number" class="form-input" id="project-effort" min="0" value="100">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="project-budget">Orçamento (R$)</label>
+                    <input type="number" class="form-input" id="project-budget" min="0" value="50000">
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Projeto</button>
+                </div>
+            </form>
         </div>
     </div>
     

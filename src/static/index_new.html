@@ -658,6 +658,206 @@
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
+        .consolidated-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .consolidated-header h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+        
+        .consolidated-header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        
+        .priority-matrix {
+            margin-bottom: 40px;
+        }
+        
+        .priority-matrix h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+        
+        .matrix-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .matrix-quadrant {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .matrix-quadrant:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        
+        .high-roi-low-effort {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        
+        .high-roi-high-effort {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+        
+        .low-roi-low-effort {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .low-roi-high-effort {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .quadrant-label {
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .quadrant-projects {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+        
+        .projects-table-container {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+        
+        .projects-table-container h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+        
+        .table-controls {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group, .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label, .sort-group label {
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .filter-group select, .sort-group select {
+            padding: 8px 12px;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.8);
+            color: #f8fafc;
+            font-size: 0.9rem;
+        }
+        
+        .projects-table {
+            overflow-x: auto;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table th {
+            background: rgba(30, 41, 59, 0.9);
+            color: #f8fafc;
+            font-weight: 700;
+            padding: 16px 12px;
+            text-align: left;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #334155;
+            color: #f8fafc;
+            font-size: 0.9rem;
+        }
+        
+        .table tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .priority-badge-table {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .priority-alta-table {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .priority-média-table {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+        
+        .priority-baixa-table {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .efficiency-score {
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        
+        .roi-value {
+            font-weight: 700;
+            color: #22c55e;
+        }
+        
+        .effort-value {
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -698,6 +898,10 @@
                 <div class="stat-label">ROI Médio</div>
             </div>
             <div class="stat-card">
+                <div class="stat-number" id="efficiency-score">0</div>
+                <div class="stat-label">Score Eficiência</div>
+            </div>
+            <div class="stat-card">
                 <div class="stat-number" id="total-budget">R$ 0</div>
                 <div class="stat-label">Orçamento Total</div>
             </div>
@@ -709,11 +913,16 @@
                 <div class="stat-number" id="high-priority">0</div>
                 <div class="stat-label">Alta Prioridade</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-number" id="effort-deviation">0%</div>
+                <div class="stat-label">Desvio Esforço</div>
+            </div>
         </div>
         
         <div class="main-content">
             <div class="tabs">
                 <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
+                <button class="tab" data-tab="consolidated">📋 Visão Consolidada</button>
                 <button class="tab" data-tab="sensores">⚙️ Sensores</button>
                 <button class="tab" data-tab="rastreabilidade">📡 Rastreabilidade</button>
                 <button class="tab" data-tab="inovacao">🚀 Inovação</button>
@@ -723,6 +932,62 @@
                 <button class="add-project-btn" onclick="openProjectModal()">+ Novo Projeto</button>
                 <div class="projects-grid" id="projects-grid">
                     <div class="loading">Carregando projetos...</div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="consolidated">
+                <div class="consolidated-header">
+                    <h3>📋 Visão Consolidada de Projetos</h3>
+                    <p>Projetos ordenados por priorização baseada em ROI e esforço</p>
+                </div>
+                
+                <div class="priority-matrix">
+                    <h4>🎯 Matriz de Priorização</h4>
+                    <div class="matrix-container">
+                        <div class="matrix-quadrant high-roi-low-effort">
+                            <div class="quadrant-label">Alto ROI<br>Baixo Esforço</div>
+                            <div class="quadrant-projects" id="high-roi-low-effort-projects">0 projetos</div>
+                        </div>
+                        <div class="matrix-quadrant high-roi-high-effort">
+                            <div class="quadrant-label">Alto ROI<br>Alto Esforço</div>
+                            <div class="quadrant-projects" id="high-roi-high-effort-projects">0 projetos</div>
+                        </div>
+                        <div class="matrix-quadrant low-roi-low-effort">
+                            <div class="quadrant-label">Baixo ROI<br>Baixo Esforço</div>
+                            <div class="quadrant-projects" id="low-roi-low-effort-projects">0 projetos</div>
+                        </div>
+                        <div class="matrix-quadrant low-roi-high-effort">
+                            <div class="quadrant-label">Baixo ROI<br>Alto Esforço</div>
+                            <div class="quadrant-projects" id="low-roi-high-effort-projects">0 projetos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="projects-table-container">
+                    <h4>📊 Lista de Projetos Priorizados</h4>
+                    <div class="table-controls">
+                        <div class="filter-group">
+                            <label>Filtrar por:</label>
+                            <select id="priority-filter">
+                                <option value="all">Todas as Prioridades</option>
+                                <option value="alta">Alta Prioridade</option>
+                                <option value="média">Média Prioridade</option>
+                                <option value="baixa">Baixa Prioridade</option>
+                            </select>
+                        </div>
+                        <div class="sort-group">
+                            <label>Ordenar por:</label>
+                            <select id="sort-by">
+                                <option value="priority">Prioridade</option>
+                                <option value="roi">ROI</option>
+                                <option value="effort">Esforço</option>
+                                <option value="efficiency">Eficiência</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="projects-table" id="projects-table">
+                        <div class="loading">Carregando tabela...</div>
+                    </div>
                 </div>
             </div>
             
@@ -1009,6 +1274,11 @@
         function renderProjects() {
             let filteredProjects = projects;
             
+            if (currentTab === 'consolidated') {
+                renderConsolidatedView();
+                return;
+            }
+            
             if (currentTab !== 'dashboard') {
                 filteredProjects = projects.filter(project => project.category === currentTab);
             }
@@ -1097,12 +1367,26 @@
             const avgROI = projects.length > 0 ? Math.round(projects.reduce((sum, p) => sum + p.roi, 0) / projects.length) : 0;
             const totalBudget = projects.reduce((sum, p) => sum + p.budget, 0);
             
+            // Calcular Score de Eficiência (ROI médio / esforço médio)
+            const avgEffort = projects.length > 0 ? projects.reduce((sum, p) => sum + p.effort, 0) / projects.length : 0;
+            const efficiencyScore = avgEffort > 0 ? Math.round((avgROI / avgEffort) * 100) : 0;
+            
+            // Calcular Desvio de Esforço (comparar esforço planejado vs real)
+            const effortDeviation = projects.length > 0 ? 
+                Math.round(projects.reduce((sum, p) => {
+                    const plannedEffort = p.effort;
+                    const actualEffort = p.effort * (p.currentStage / 5); // Simulação
+                    return sum + ((actualEffort / plannedEffort) - 1) * 100;
+                }, 0) / projects.length) : 0;
+            
             document.getElementById('total-projects').textContent = totalProjects;
             document.getElementById('completed-projects').textContent = completedProjects;
             document.getElementById('active-projects').textContent = activeProjects;
             document.getElementById('high-priority').textContent = highPriorityProjects;
             document.getElementById('avg-roi').textContent = avgROI + '%';
             document.getElementById('total-budget').textContent = 'R$ ' + totalBudget.toLocaleString('pt-BR');
+            document.getElementById('efficiency-score').textContent = efficiencyScore;
+            document.getElementById('effort-deviation').textContent = effortDeviation + '%';
         }
         
         function openProjectModal(projectId = null) {
@@ -1241,6 +1525,132 @@
             setTimeout(() => {
                 successDiv.remove();
             }, 3000);
+        }
+        
+        // Função para calcular priorização baseada em ROI e esforço
+        function calculateProjectPriority(project) {
+            const roi = project.roi;
+            const effort = project.effort;
+            
+            // Normalizar valores (0-100)
+            const normalizedROI = Math.min(roi, 100);
+            const normalizedEffort = Math.min((effort / 200) * 100, 100); // Assumindo 200h como máximo
+            
+            // Calcular score de prioridade (ROI alto + esforço baixo = alta prioridade)
+            const priorityScore = normalizedROI - (normalizedEffort * 0.5);
+            
+            if (priorityScore >= 60) return 'alta';
+            if (priorityScore >= 20) return 'média';
+            return 'baixa';
+        }
+        
+        // Função para calcular score de eficiência
+        function calculateEfficiencyScore(project) {
+            return Math.round((project.roi / project.effort) * 100);
+        }
+        
+        // Função para classificar projetos na matriz
+        function classifyProjectInMatrix(project) {
+            const roi = project.roi;
+            const effort = project.effort;
+            
+            if (roi >= 70 && effort <= 100) return 'high-roi-low-effort';
+            if (roi >= 70 && effort > 100) return 'high-roi-high-effort';
+            if (roi < 70 && effort <= 100) return 'low-roi-low-effort';
+            return 'low-roi-high-effort';
+        }
+        
+        // Função para renderizar a visão consolidada
+        function renderConsolidatedView() {
+            // Atualizar matriz de priorização
+            updatePriorityMatrix();
+            
+            // Renderizar tabela de projetos
+            renderProjectsTable();
+        }
+        
+        // Função para atualizar a matriz de priorização
+        function updatePriorityMatrix() {
+            const quadrants = {
+                'high-roi-low-effort': projects.filter(p => classifyProjectInMatrix(p) === 'high-roi-low-effort'),
+                'high-roi-high-effort': projects.filter(p => classifyProjectInMatrix(p) === 'high-roi-high-effort'),
+                'low-roi-low-effort': projects.filter(p => classifyProjectInMatrix(p) === 'low-roi-low-effort'),
+                'low-roi-high-effort': projects.filter(p => classifyProjectInMatrix(p) === 'low-roi-high-effort')
+            };
+            
+            Object.keys(quadrants).forEach(quadrant => {
+                const element = document.getElementById(`${quadrant}-projects`);
+                if (element) {
+                    element.textContent = `${quadrants[quadrant].length} projetos`;
+                }
+            });
+        }
+        
+        // Função para renderizar a tabela de projetos
+        function renderProjectsTable() {
+            const table = document.getElementById('projects-table');
+            if (!table) return;
+            
+            // Ordenar projetos por prioridade calculada
+            const sortedProjects = [...projects].sort((a, b) => {
+                const priorityA = calculateProjectPriority(a);
+                const priorityB = calculateProjectPriority(b);
+                
+                const priorityOrder = { 'alta': 3, 'média': 2, 'baixa': 1 };
+                if (priorityOrder[priorityA] !== priorityOrder[priorityB]) {
+                    return priorityOrder[priorityB] - priorityOrder[priorityA];
+                }
+                
+                // Se mesma prioridade, ordenar por ROI
+                return b.roi - a.roi;
+            });
+            
+            table.innerHTML = `
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Projeto</th>
+                            <th>Categoria</th>
+                            <th>Prioridade</th>
+                            <th>ROI</th>
+                            <th>Esforço</th>
+                            <th>Eficiência</th>
+                            <th>Etapa</th>
+                            <th>Orçamento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${sortedProjects.map(project => {
+                            const calculatedPriority = calculateProjectPriority(project);
+                            const efficiencyScore = calculateEfficiencyScore(project);
+                            
+                            return `
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 600; color: #f8fafc;">${project.name}</div>
+                                        <div style="font-size: 0.8rem; color: #94a3b8;">${project.description || 'Sem descrição'}</div>
+                                    </td>
+                                    <td>${getCategoryName(project.category)}</td>
+                                    <td>
+                                        <span class="priority-badge-table priority-${calculatedPriority}-table">
+                                            ${calculatedPriority}
+                                        </span>
+                                    </td>
+                                    <td><span class="roi-value">${project.roi}%</span></td>
+                                    <td><span class="effort-value">${project.effort}h</span></td>
+                                    <td><span class="efficiency-score">${efficiencyScore}</span></td>
+                                    <td>${getStageName(project.currentStage)}</td>
+                                    <td>R$ ${project.budget.toLocaleString('pt-BR')}</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="editProject(${project.id})" style="padding: 4px 8px; font-size: 0.8rem;">Editar</button>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
         }
     </script>
 </body>

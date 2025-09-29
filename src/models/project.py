@@ -69,9 +69,11 @@ class ProjectHistory(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
-    field_changed = db.Column(db.String(50), nullable=False)
-    old_value = db.Column(db.Text)
-    new_value = db.Column(db.Text)
+    stage = db.Column(db.Integer)
+    priority = db.Column(db.String(20))
+    roi = db.Column(db.Float)
+    effort = db.Column(db.Integer)
+    budget = db.Column(db.Integer)
     changed_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     project = db.relationship('Project', backref=db.backref('history', lazy=True))
@@ -80,11 +82,13 @@ class ProjectHistory(db.Model):
         return {
             'id': self.id,
             'projectId': self.project_id,
-            'fieldChanged': self.field_changed,
-            'oldValue': self.old_value,
-            'newValue': self.new_value,
+            'stage': self.stage,
+            'priority': self.priority,
+            'roi': self.roi,
+            'effort': self.effort,
+            'budget': self.budget,
             'changedAt': self.changed_at.isoformat() if self.changed_at else None
         }
     
     def __repr__(self):
-        return f'<ProjectHistory {self.project_id}: {self.field_changed}>'
+        return f'<ProjectHistory {self.project_id}: stage={self.stage}>'

@@ -12,10 +12,8 @@ def get_projects():
         projects = Project.query.all()
         projects_list = [project.to_dict() for project in projects]
         
-        return jsonify({
-            'success': True,
-            'data': projects_list
-        }), 200
+        # Retornar array simples para compatibilidade com o frontend
+        return jsonify(projects_list), 200
         
     except Exception as e:
         return jsonify({

@@ -14,9 +14,9 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             min-height: 100vh;
-            color: #333;
+            color: #e0e0e0;
         }
         
         .container {
@@ -26,21 +26,25 @@
         }
         
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(30, 30, 30, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #404040;
         }
         
         .header h1 {
-            color: #2d3748;
+            color: #00d4aa;
             margin-bottom: 10px;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
         
         .header p {
-            color: #718096;
+            color: #b0b0b0;
+            font-size: 1.1rem;
         }
         
         .stats {
@@ -51,39 +55,50 @@
         }
         
         .stat-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(30, 30, 30, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #404040;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
+            border-color: #00d4aa;
         }
         
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #4299e1;
+            color: #00d4aa;
             margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
         }
         
         .stat-label {
-            color: #718096;
+            color: #b0b0b0;
             font-size: 0.9rem;
+            font-weight: 500;
         }
         
         .main-content {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(30, 30, 30, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #404040;
         }
         
         .tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
-            border-bottom: 2px solid #e2e8f0;
+            border-bottom: 2px solid #404040;
         }
         
         .tab {
@@ -92,18 +107,21 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            color: #718096;
+            color: #b0b0b0;
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+            border-radius: 8px 8px 0 0;
         }
         
         .tab.active {
-            color: #4299e1;
-            border-bottom-color: #4299e1;
+            color: #00d4aa;
+            border-bottom-color: #00d4aa;
+            background: rgba(0, 212, 170, 0.1);
         }
         
         .tab:hover {
-            color: #4299e1;
+            color: #00d4aa;
+            background: rgba(0, 212, 170, 0.05);
         }
         
         .tab-content {
@@ -121,16 +139,29 @@
         }
         
         .project-card {
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            background: rgba(40, 40, 40, 0.95);
+            border: 1px solid #404040;
+            border-radius: 12px;
             padding: 20px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
+            border-color: #00d4aa;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4aa, #00a8cc);
         }
         
         .project-header {
@@ -141,15 +172,15 @@
         }
         
         .project-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #e0e0e0;
             margin-bottom: 5px;
         }
         
         .project-category {
             font-size: 0.9rem;
-            color: #718096;
+            color: #b0b0b0;
         }
         
         .priority-badge {
@@ -160,24 +191,78 @@
         }
         
         .priority-alta {
-            background: #fed7d7;
-            color: #c53030;
+            background: rgba(255, 99, 99, 0.2);
+            color: #ff6363;
+            border: 1px solid #ff6363;
         }
         
         .priority-média {
-            background: #fef5e7;
-            color: #d69e2e;
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
         }
         
         .priority-baixa {
-            background: #c6f6d5;
-            color: #38a169;
+            background: rgba(0, 212, 170, 0.2);
+            color: #00d4aa;
+            border: 1px solid #00d4aa;
         }
         
         .project-description {
-            color: #4a5568;
+            color: #b0b0b0;
             margin-bottom: 15px;
             line-height: 1.5;
+        }
+        
+        .progress-container {
+            margin-bottom: 15px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4aa, #00a8cc);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress-percentage {
+            font-weight: 600;
+            color: #00d4aa;
         }
         
         .project-metrics {
@@ -193,14 +278,14 @@
         
         .metric-label {
             font-size: 0.8rem;
-            color: #718096;
+            color: #b0b0b0;
             margin-bottom: 5px;
         }
         
         .metric-value {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #e0e0e0;
         }
         
         .project-actions {
@@ -218,30 +303,41 @@
         }
         
         .btn-primary {
-            background: #4299e1;
+            background: linear-gradient(135deg, #00d4aa, #00a8cc);
             color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
         }
         
         .btn-primary:hover {
-            background: #3182ce;
+            background: linear-gradient(135deg, #00a8cc, #00d4aa);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
         }
         
         .btn-secondary {
-            background: #e2e8f0;
-            color: #4a5568;
+            background: rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            border: 1px solid #404040;
         }
         
         .btn-secondary:hover {
-            background: #cbd5e0;
+            background: rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            border-color: #00d4aa;
         }
         
         .btn-danger {
-            background: #f56565;
+            background: linear-gradient(135deg, #ff6363, #ff4757);
             color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 99, 99, 0.3);
         }
         
         .btn-danger:hover {
-            background: #e53e3e;
+            background: linear-gradient(135deg, #ff4757, #ff6363);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 99, 99, 0.4);
         }
         
         .modal {
@@ -262,13 +358,15 @@
         }
         
         .modal-content {
-            background: white;
+            background: rgba(30, 30, 30, 0.98);
             border-radius: 12px;
             padding: 30px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            border: 1px solid #404040;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
         .modal-header {
@@ -281,7 +379,7 @@
         .modal-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #e0e0e0;
         }
         
         .close-btn {
@@ -289,7 +387,12 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #718096;
+            color: #b0b0b0;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #00d4aa;
         }
         
         .form-group {
@@ -300,40 +403,62 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            color: #2d3748;
+            color: #e0e0e0;
         }
         
         .form-input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border: 1px solid #404040;
             border-radius: 6px;
             font-size: 1rem;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
         }
         
         .form-input:focus {
             outline: none;
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+            background: rgba(50, 50, 50, 0.8);
         }
         
         .form-select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border: 1px solid #404040;
             border-radius: 6px;
             font-size: 1rem;
-            background: white;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
         }
         
         .form-textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border: 1px solid #404040;
             border-radius: 6px;
             font-size: 1rem;
             min-height: 100px;
             resize: vertical;
+            background: rgba(40, 40, 40, 0.8);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+            background: rgba(50, 50, 50, 0.8);
         }
         
         .form-row {
@@ -365,20 +490,23 @@
         }
         
         .add-project-btn {
-            background: #4299e1;
+            background: linear-gradient(135deg, #00d4aa, #00a8cc);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 8px;
             font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             margin-bottom: 20px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
         }
         
         .add-project-btn:hover {
-            background: #3182ce;
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #00a8cc, #00d4aa);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
         }
         
         @media (max-width: 768px) {
@@ -423,6 +551,14 @@
             <div class="stat-card">
                 <div class="stat-number" id="total-budget">R$ 0</div>
                 <div class="stat-label">Orçamento Total</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="active-projects">0</div>
+                <div class="stat-label">Em Andamento</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="high-priority">0</div>
+                <div class="stat-label">Alta Prioridade</div>
             </div>
         </div>
         
@@ -659,7 +795,9 @@
                 return;
             }
             
-            grid.innerHTML = filteredProjects.map(project => `
+            grid.innerHTML = filteredProjects.map(project => {
+                const progressPercentage = (project.currentStage / 5) * 100;
+                return `
                 <div class="project-card">
                     <div class="project-header">
                         <div>
@@ -670,6 +808,16 @@
                     </div>
                     
                     <div class="project-description">${project.description || 'Sem descrição'}</div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progresso do Projeto</span>
+                            <span class="progress-percentage">${Math.round(progressPercentage)}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        </div>
+                    </div>
                     
                     <div class="project-metrics">
                         <div class="metric">
@@ -691,7 +839,8 @@
                         <button class="btn btn-danger" onclick="deleteProject(${project.id})">Excluir</button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
         
         function getCategoryName(category) {
@@ -717,11 +866,15 @@
         function updateStats() {
             const totalProjects = projects.length;
             const completedProjects = projects.filter(p => p.currentStage === 5).length;
+            const activeProjects = projects.filter(p => p.currentStage > 1 && p.currentStage < 5).length;
+            const highPriorityProjects = projects.filter(p => p.priority === 'alta').length;
             const avgROI = projects.length > 0 ? Math.round(projects.reduce((sum, p) => sum + p.roi, 0) / projects.length) : 0;
             const totalBudget = projects.reduce((sum, p) => sum + p.budget, 0);
             
             document.getElementById('total-projects').textContent = totalProjects;
             document.getElementById('completed-projects').textContent = completedProjects;
+            document.getElementById('active-projects').textContent = activeProjects;
+            document.getElementById('high-priority').textContent = highPriorityProjects;
             document.getElementById('avg-roi').textContent = avgROI + '%';
             document.getElementById('total-budget').textContent = 'R$ ' + totalBudget.toLocaleString('pt-BR');
         }

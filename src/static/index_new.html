@@ -125,6 +125,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            z-index: 1;
         }
         
         .stat-card::before {
@@ -137,6 +138,7 @@
             background: var(--gradient-primary);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            z-index: 0;
         }
         
         .stat-card:hover {
@@ -152,12 +154,23 @@
         .stat-number {
             font-size: 1.75rem;
             font-weight: 800;
+            color: var(--text-primary);
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.25rem;
             line-height: 1;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Fallback para navegadores que não suportam background-clip */
+        @supports not (background-clip: text) or not (-webkit-background-clip: text) {
+            .stat-number {
+                color: var(--primary-color);
+                background: none;
+            }
         }
         
         .stat-label {
@@ -168,6 +181,8 @@
             letter-spacing: 0.5px;
             line-height: 1.2;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
         }
         
         .main-content {
@@ -1104,11 +1119,14 @@
         .premium-metric .metric-number {
             font-size: 2.5rem;
             font-weight: 800;
+            color: var(--text-primary);
             background: linear-gradient(135deg, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 8px;
+            position: relative;
+            z-index: 10;
         }
         
         .premium-metric .metric-label {
@@ -1423,12 +1441,23 @@
         .metric-number {
             font-size: 1.5rem;
             font-weight: 800;
+            color: var(--text-primary);
             background: linear-gradient(135deg, var(--primary-color), var(--info-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.25rem;
             line-height: 1;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Fallback para navegadores que não suportam background-clip */
+        @supports not (background-clip: text) or not (-webkit-background-clip: text) {
+            .metric-number {
+                color: var(--primary-color);
+                background: none;
+            }
         }
         
         .metric-label {
@@ -1439,6 +1468,8 @@
             font-size: 0.75rem;
             line-height: 1.2;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
         }
         
         .metric-subtitle {
@@ -1447,6 +1478,8 @@
             margin-top: 0.125rem;
             font-weight: 500;
             line-height: 1.2;
+            position: relative;
+            z-index: 10;
         }
         
         @media (max-width: 768px) {

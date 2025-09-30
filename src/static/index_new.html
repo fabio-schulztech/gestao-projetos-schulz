@@ -1533,6 +1533,51 @@
             box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
         }
         
+        /* Barra de progresso de 5 estágios */
+        .stage-progress-bar {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 120px;
+            margin: 0 auto;
+        }
+        
+        .stage-progress-step {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.15);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .stage-progress-step.completed {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            border-color: #3b82f6;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+        }
+        
+        .stage-progress-step.current {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            border-color: #60a5fa;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 0.9;
+            }
+        }
+        
         .premium-metric .metric-number {
             font-size: 2.5rem;
             font-weight: 800;
@@ -3218,6 +3263,25 @@
             filterAndSortProjects();
         }
         
+        // Função para gerar barra de progresso de 5 estágios
+        function renderStageProgressBar(currentStage) {
+            const totalStages = 5;
+            let progressHTML = '<div class="stage-progress-bar">';
+            
+            for (let i = 1; i <= totalStages; i++) {
+                let stepClass = 'stage-progress-step';
+                if (i < currentStage) {
+                    stepClass += ' completed';
+                } else if (i === currentStage) {
+                    stepClass += ' current';
+                }
+                progressHTML += `<div class="${stepClass}"></div>`;
+            }
+            
+            progressHTML += '</div>';
+            return progressHTML;
+        }
+        
         // Função para renderizar tabela filtrada
         function renderFilteredProjectsTable(filteredProjects) {
             const table = document.getElementById('projects-table');
@@ -3234,7 +3298,7 @@
                             <th>Esforço</th>
                             <th>Dias Úteis</th>
                             <th>Eficiência</th>
-                            <th>Etapa</th>
+                            <th>Progresso</th>
                             <th>Orçamento</th>
                         </tr>
                     </thead>
@@ -3259,7 +3323,7 @@
                                     <td><span class="effort-value">${project.effort}h</span></td>
                                     <td><span class="work-days-value">${workDays} dias</span></td>
                                     <td><span class="efficiency-score">${efficiencyScore}</span></td>
-                                    <td>${getStageName(project.currentStage)}</td>
+                                    <td>${renderStageProgressBar(project.currentStage)}</td>
                                     <td>R$ ${project.budget.toLocaleString('pt-BR')}</td>
                                 </tr>
                             `;

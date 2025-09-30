@@ -259,19 +259,20 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
         }
         
         .project-card {
             background: rgba(30, 41, 59, 0.95);
             border: 1px solid #334155;
-            border-radius: 16px;
-            padding: 24px;
-            padding-bottom: 3.5rem;
+            border-radius: 12px;
+            padding: 1rem;
+            padding-bottom: 3rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            max-height: 400px;
         }
         
         .project-card:hover {
@@ -294,18 +295,19 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 0.75rem;
         }
         
         .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.125rem;
+            font-weight: 600;
             color: #f8fafc;
-            margin-bottom: 8px;
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
         }
         
         .project-category {
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             color: #94a3b8;
             font-weight: 500;
         }
@@ -337,13 +339,19 @@
         
         .project-description {
             color: #94a3b8;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            font-size: 0.8125rem;
+            max-height: 2.8em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         
         .progress-container {
-            margin-bottom: 15px;
+            margin-bottom: 0.75rem;
         }
         
         .progress-label {
@@ -801,40 +809,43 @@
         }
         
         .priority-matrix {
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
         }
         
         .priority-matrix h4 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 700;
             color: #f8fafc;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            text-align: center;
         }
         
         .matrix-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            max-width: 600px;
+            gap: 0.75rem;
+            max-width: 500px;
             margin: 0 auto;
         }
         
         .matrix-quadrant {
             background: rgba(30, 41, 59, 0.8);
             border: 2px solid #334155;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 1rem;
             text-align: center;
             transition: all 0.3s ease;
-            min-height: 120px;
+            min-height: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
         
         .matrix-quadrant:hover {
             border-color: #3b82f6;
-            transform: translateY(-2px);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .high-roi-low-effort {
@@ -858,14 +869,15 @@
         }
         
         .quadrant-label {
-            font-weight: 700;
+            font-weight: 600;
             color: #f8fafc;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8125rem;
+            line-height: 1.3;
         }
         
         .quadrant-projects {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #3b82f6;
         }
@@ -1574,12 +1586,9 @@
         
         <div class="main-content">
             <div class="tabs">
-                <button class="tab premium-tab active" data-tab="dashboard">Dashboard</button>
+                <button class="tab premium-tab active" data-tab="dashboard">Todos os Projetos</button>
                 <button class="tab premium-tab" data-tab="consolidated">Visão Consolidada</button>
                 <button class="tab premium-tab" data-tab="timeline">Evolução Temporal</button>
-                <button class="tab premium-tab" data-tab="sensores">Sensores</button>
-                <button class="tab premium-tab" data-tab="rastreabilidade">Rastreabilidade</button>
-                <button class="tab premium-tab" data-tab="inovacao">Inovação</button>
             </div>
             
             <div class="tab-content active" id="dashboard">
@@ -1666,24 +1675,6 @@
                     <div class="projects-table" id="projects-table">
                         <div class="loading">Carregando tabela...</div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="sensores">
-                <div class="projects-grid" id="sensores-grid">
-                    <div class="loading">Carregando projetos de sensores...</div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="rastreabilidade">
-                <div class="projects-grid" id="rastreabilidade-grid">
-                    <div class="loading">Carregando projetos de rastreabilidade...</div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="inovacao">
-                <div class="projects-grid" id="inovacao-grid">
-                    <div class="loading">Carregando projetos de inovação...</div>
                 </div>
             </div>
         </div>

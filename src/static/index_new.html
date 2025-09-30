@@ -268,7 +268,6 @@
             border: 1px solid #334155;
             border-radius: 12px;
             padding: 1rem;
-            padding-bottom: 3rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -365,13 +364,26 @@
         .project-details-content {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
-            max-width: 600px;
+            max-width: 650px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .project-details-header {
@@ -404,21 +416,36 @@
         
         .project-details-section {
             margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
         }
         
         .project-details-label {
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            opacity: 0.8;
         }
         
         .project-details-value {
             color: var(--text-secondary);
             line-height: 1.6;
-            font-size: 0.9375rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .project-details-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
         }
         
         .progress-container {
@@ -500,20 +527,6 @@
             color: #f8fafc;
         }
         
-        .project-actions {
-            position: absolute;
-            bottom: 0.75rem;
-            right: 0.75rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 20;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .project-card:hover .project-actions {
-            opacity: 1;
-        }
         
         .btn {
             padding: 0.375rem 0.75rem;
@@ -1794,9 +1807,10 @@
                 <div class="project-details-value" id="details-project-budget"></div>
             </div>
             
-            <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 2rem;">
-                <button class="btn btn-primary" onclick="closeProjectDetails(); editProject(window.currentProjectDetailsId)">Editar</button>
+            <div class="project-details-actions">
                 <button class="btn btn-secondary" onclick="closeProjectDetails()">Fechar</button>
+                <button class="btn btn-primary" onclick="closeProjectDetails(); editProject(window.currentProjectDetailsId)">Editar</button>
+                <button class="btn btn-danger" onclick="closeProjectDetails(); deleteProject(window.currentProjectDetailsId)">Excluir</button>
             </div>
         </div>
     </div>
@@ -2204,11 +2218,6 @@
                             <div class="metric-label">Dias Úteis</div>
                             <div class="metric-value work-days-value">${workDays} dias</div>
                         </div>
-                    </div>
-                    
-                    <div class="project-actions">
-                        <button class="btn btn-primary premium-button" onclick="editProject(${project.id})">Editar</button>
-                        <button class="btn btn-danger" onclick="deleteProject(${project.id})">Excluir</button>
                     </div>
                 </div>
             `;

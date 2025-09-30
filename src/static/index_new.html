@@ -906,9 +906,8 @@
         
         .matrix-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            max-width: 500px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             margin: 0 auto;
         }
         
@@ -916,20 +915,25 @@
             background: rgba(30, 41, 59, 0.8);
             border: 2px solid #334155;
             border-radius: 10px;
-            padding: 1rem;
+            padding: 1.25rem 1rem;
             text-align: center;
             transition: all 0.3s ease;
-            min-height: 90px;
+            min-height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
+            cursor: pointer;
         }
         
         .matrix-quadrant:hover {
             border-color: #3b82f6;
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .matrix-quadrant:active {
+            transform: translateY(-2px);
         }
         
         .high-roi-low-effort {
@@ -964,6 +968,77 @@
             font-size: 1.25rem;
             font-weight: 800;
             color: #3b82f6;
+        }
+        
+        .matrix-projects-list {
+            display: none;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .matrix-projects-list.active {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .matrix-projects-list h5 {
+            color: #f8fafc;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #3b82f6;
+        }
+        
+        .matrix-project-item {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-project-item:hover {
+            border-color: #3b82f6;
+            background: rgba(30, 41, 59, 1);
+            transform: translateX(4px);
+        }
+        
+        .matrix-project-name {
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .matrix-project-info {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .matrix-project-info span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
         }
         
         .projects-table-container {
@@ -1715,22 +1790,28 @@
                 <div class="priority-matrix">
                     <h4>Matriz de Priorização</h4>
                     <div class="matrix-container">
-                        <div class="matrix-quadrant high-roi-low-effort">
+                        <div class="matrix-quadrant high-roi-low-effort" onclick="toggleMatrixProjects('high-roi-low-effort')">
                             <div class="quadrant-label">Alto ROI<br>Baixo Esforço</div>
                             <div class="quadrant-projects" id="high-roi-low-effort-projects">0 projetos</div>
                         </div>
-                        <div class="matrix-quadrant high-roi-high-effort">
+                        <div class="matrix-quadrant high-roi-high-effort" onclick="toggleMatrixProjects('high-roi-high-effort')">
                             <div class="quadrant-label">Alto ROI<br>Alto Esforço</div>
                             <div class="quadrant-projects" id="high-roi-high-effort-projects">0 projetos</div>
                         </div>
-                        <div class="matrix-quadrant low-roi-low-effort">
+                        <div class="matrix-quadrant low-roi-low-effort" onclick="toggleMatrixProjects('low-roi-low-effort')">
                             <div class="quadrant-label">Baixo ROI<br>Baixo Esforço</div>
                             <div class="quadrant-projects" id="low-roi-low-effort-projects">0 projetos</div>
                         </div>
-                        <div class="matrix-quadrant low-roi-high-effort">
+                        <div class="matrix-quadrant low-roi-high-effort" onclick="toggleMatrixProjects('low-roi-high-effort')">
                             <div class="quadrant-label">Baixo ROI<br>Alto Esforço</div>
                             <div class="quadrant-projects" id="low-roi-high-effort-projects">0 projetos</div>
                         </div>
+                    </div>
+                    
+                    <!-- Lista de projetos da matriz -->
+                    <div class="matrix-projects-list" id="matrix-projects-list">
+                        <h5 id="matrix-list-title">Projetos</h5>
+                        <div id="matrix-list-content"></div>
                     </div>
                 </div>
                 
@@ -1834,9 +1915,9 @@
                     <label class="form-label" for="project-category">Categoria *</label>
                     <select class="form-select" id="project-category" required>
                         <option value="">Selecione a categoria</option>
-                        <option value="sensores">⚙️ Sensores e Monitoramento</option>
-                        <option value="rastreabilidade">📡 Rastreabilidade e Operações</option>
-                        <option value="inovacao">🚀 Inovação e Projetos Especiais</option>
+                        <option value="sensores">Sensores e Monitoramento</option>
+                        <option value="rastreabilidade">Rastreabilidade e Operações</option>
+                        <option value="inovacao">Inovação e Projetos Especiais</option>
                     </select>
                 </div>
                 
@@ -1924,9 +2005,9 @@
                     <label class="form-label" for="project-category">Categoria *</label>
                     <select class="form-select" id="project-category" required>
                         <option value="">Selecione a categoria</option>
-                        <option value="sensores">⚙️ Sensores e Monitoramento</option>
-                        <option value="rastreabilidade">📡 Rastreabilidade e Operações</option>
-                        <option value="inovacao">🚀 Inovação e Projetos Especiais</option>
+                        <option value="sensores">Sensores e Monitoramento</option>
+                        <option value="rastreabilidade">Rastreabilidade e Operações</option>
+                        <option value="inovacao">Inovação e Projetos Especiais</option>
                     </select>
                 </div>
                 
@@ -2226,9 +2307,9 @@
         
         function getCategoryName(category) {
             const categories = {
-                'sensores': '⚙️ Sensores e Monitoramento',
-                'rastreabilidade': '📡 Rastreabilidade e Operações',
-                'inovacao': '🚀 Inovação e Projetos Especiais'
+                'sensores': 'Sensores e Monitoramento',
+                'rastreabilidade': 'Rastreabilidade e Operações',
+                'inovacao': 'Inovação e Projetos Especiais'
             };
             return categories[category] || category;
         }
@@ -2542,6 +2623,57 @@
                     element.textContent = `${quadrants[quadrant].length} projetos`;
                 }
             });
+            
+            // Armazenar quadrantes para uso posterior
+            window.matrixQuadrants = quadrants;
+        }
+        
+        // Função para toggle da lista de projetos da matriz
+        function toggleMatrixProjects(quadrant) {
+            const listContainer = document.getElementById('matrix-projects-list');
+            const listContent = document.getElementById('matrix-list-content');
+            const listTitle = document.getElementById('matrix-list-title');
+            
+            // Se clicar no mesmo quadrante, fechar
+            if (listContainer.classList.contains('active') && window.currentMatrixQuadrant === quadrant) {
+                listContainer.classList.remove('active');
+                window.currentMatrixQuadrant = null;
+                return;
+            }
+            
+            window.currentMatrixQuadrant = quadrant;
+            
+            // Obter projetos do quadrante
+            const quadrantProjects = window.matrixQuadrants ? window.matrixQuadrants[quadrant] : [];
+            
+            // Definir título
+            const titles = {
+                'high-roi-low-effort': 'Alto ROI, Baixo Esforço',
+                'high-roi-high-effort': 'Alto ROI, Alto Esforço',
+                'low-roi-low-effort': 'Baixo ROI, Baixo Esforço',
+                'low-roi-high-effort': 'Baixo ROI, Alto Esforço'
+            };
+            
+            listTitle.textContent = titles[quadrant] || 'Projetos';
+            
+            // Renderizar lista de projetos
+            if (quadrantProjects.length === 0) {
+                listContent.innerHTML = '<div style="text-align: center; color: #94a3b8; padding: 1rem;">Nenhum projeto neste quadrante</div>';
+            } else {
+                listContent.innerHTML = quadrantProjects.map(project => `
+                    <div class="matrix-project-item" onclick="showProjectDetails(${project.id})">
+                        <div class="matrix-project-name">${project.name}</div>
+                        <div class="matrix-project-info">
+                            <span>ROI: ${project.roi}%</span>
+                            <span>Esforço: ${project.effort}h</span>
+                            <span>Prioridade: ${project.priority}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Mostrar lista
+            listContainer.classList.add('active');
         }
         
         // Função para calcular dias úteis

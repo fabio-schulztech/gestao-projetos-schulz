@@ -858,6 +858,219 @@
             color: #f59e0b;
         }
         
+        .work-days-value {
+            font-weight: 700;
+            color: #06b6d4;
+        }
+        
+        /* Melhorias Premium */
+        .premium-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .premium-shadow {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .premium-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        .premium-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .premium-button:hover::before {
+            left: 100%;
+        }
+        
+        .premium-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .premium-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        
+        .premium-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: rgba(15, 23, 42, 1);
+        }
+        
+        .premium-select {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        
+        .premium-select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .premium-table {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .premium-table th {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .premium-table tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: scale(1.01);
+        }
+        
+        .premium-badge {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .premium-metric {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .premium-metric:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .premium-metric .metric-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .premium-metric .metric-label {
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        
+        .premium-progress {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .premium-progress-fill {
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #22c55e);
+            height: 100%;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        .premium-tab {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .premium-tab:hover::before {
+            left: 100%;
+        }
+        
+        .premium-tab.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border-color: #3b82f6;
+            color: #f8fafc;
+        }
+        
+        .premium-tab:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            color: #f8fafc;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -885,51 +1098,51 @@
         </div>
         
         <div class="stats" id="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="total-projects">0</div>
-                <div class="stat-label">Total de Projetos</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="total-projects">0</div>
+                <div class="metric-label">Total de Projetos</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="completed-projects">0</div>
-                <div class="stat-label">Finalizados</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="completed-projects">0</div>
+                <div class="metric-label">Finalizados</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="avg-roi">0%</div>
-                <div class="stat-label">ROI Médio</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="avg-roi">0%</div>
+                <div class="metric-label">ROI Médio</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="efficiency-score">0</div>
-                <div class="stat-label">Score Eficiência</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="efficiency-score">0</div>
+                <div class="metric-label">Score Eficiência</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-budget">R$ 0</div>
-                <div class="stat-label">Orçamento Total</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="total-budget">R$ 0</div>
+                <div class="metric-label">Orçamento Total</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="active-projects">0</div>
-                <div class="stat-label">Em Andamento</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="active-projects">0</div>
+                <div class="metric-label">Em Andamento</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="high-priority">0</div>
-                <div class="stat-label">Alta Prioridade</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="high-priority">0</div>
+                <div class="metric-label">Alta Prioridade</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="effort-deviation">0%</div>
-                <div class="stat-label">Desvio Esforço</div>
+            <div class="stat-card premium-metric">
+                <div class="metric-number" id="effort-deviation">0%</div>
+                <div class="metric-label">Desvio Esforço</div>
             </div>
         </div>
         
         <div class="main-content">
             <div class="tabs">
-                <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
-                <button class="tab" data-tab="consolidated">📋 Visão Consolidada</button>
-                <button class="tab" data-tab="sensores">⚙️ Sensores</button>
-                <button class="tab" data-tab="rastreabilidade">📡 Rastreabilidade</button>
-                <button class="tab" data-tab="inovacao">🚀 Inovação</button>
+                <button class="tab premium-tab active" data-tab="dashboard">📊 Dashboard</button>
+                <button class="tab premium-tab" data-tab="consolidated">📋 Visão Consolidada</button>
+                <button class="tab premium-tab" data-tab="sensores">⚙️ Sensores</button>
+                <button class="tab premium-tab" data-tab="rastreabilidade">📡 Rastreabilidade</button>
+                <button class="tab premium-tab" data-tab="inovacao">🚀 Inovação</button>
             </div>
             
             <div class="tab-content active" id="dashboard">
-                <button class="add-project-btn" onclick="openProjectModal()">+ Novo Projeto</button>
+                <button class="add-project-btn premium-button" onclick="openProjectModal()">+ Novo Projeto</button>
                 <div class="projects-grid" id="projects-grid">
                     <div class="loading">Carregando projetos...</div>
                 </div>
@@ -968,7 +1181,7 @@
                     <div class="table-controls">
                         <div class="filter-group">
                             <label>Filtrar por:</label>
-                            <select id="priority-filter">
+                            <select id="priority-filter" class="premium-select">
                                 <option value="all">Todas as Prioridades</option>
                                 <option value="alta">Alta Prioridade</option>
                                 <option value="média">Média Prioridade</option>
@@ -977,7 +1190,7 @@
                         </div>
                         <div class="sort-group">
                             <label>Ordenar por:</label>
-                            <select id="sort-by">
+                            <select id="sort-by" class="premium-select">
                                 <option value="priority">Prioridade</option>
                                 <option value="roi">ROI</option>
                                 <option value="effort">Esforço</option>
@@ -1197,6 +1410,22 @@
             
             // Formulário de projeto
             document.getElementById('project-form').addEventListener('submit', handleProjectSubmit);
+            
+            // Filtros da visão consolidada
+            const priorityFilter = document.getElementById('priority-filter');
+            const sortBy = document.getElementById('sort-by');
+            
+            if (priorityFilter) {
+                priorityFilter.addEventListener('change', function() {
+                    filterAndSortProjects();
+                });
+            }
+            
+            if (sortBy) {
+                sortBy.addEventListener('change', function() {
+                    filterAndSortProjects();
+                });
+            }
         }
         
         async function loadProjects() {
@@ -1293,14 +1522,15 @@
             
             grid.innerHTML = filteredProjects.map(project => {
                 const progressPercentage = (project.currentStage / 5) * 100;
+                const workDays = calculateWorkDays(project.effort);
                 return `
-                <div class="project-card">
+                <div class="project-card premium-card">
                     <div class="project-header">
                         <div>
                             <div class="project-title">${project.name}</div>
                             <div class="project-category">${getCategoryName(project.category)}</div>
                         </div>
-                        <span class="priority-badge priority-${project.priority}">${project.priority}</span>
+                        <span class="premium-badge priority-${project.priority}">${project.priority}</span>
                     </div>
                     
                     <div class="project-description">${project.description || 'Sem descrição'}</div>
@@ -1310,8 +1540,8 @@
                             <span>Progresso do Projeto</span>
                             <span class="progress-percentage">${Math.round(progressPercentage)}%</span>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        <div class="premium-progress">
+                            <div class="premium-progress-fill" style="width: ${progressPercentage}%"></div>
                         </div>
                     </div>
                     
@@ -1322,16 +1552,16 @@
                         </div>
                         <div class="metric">
                             <div class="metric-label">ROI</div>
-                            <div class="metric-value">${project.roi}%</div>
+                            <div class="metric-value roi-value">${project.roi}%</div>
                         </div>
                         <div class="metric">
-                            <div class="metric-label">Esforço</div>
-                            <div class="metric-value">${project.effort}h</div>
+                            <div class="metric-label">Dias Úteis</div>
+                            <div class="metric-value work-days-value">${workDays} dias</div>
                         </div>
                     </div>
                     
                     <div class="project-actions">
-                        <button class="btn btn-primary" onclick="editProject(${project.id})">Editar</button>
+                        <button class="btn btn-primary premium-button" onclick="editProject(${project.id})">Editar</button>
                         <button class="btn btn-danger" onclick="deleteProject(${project.id})">Excluir</button>
                     </div>
                 </div>
@@ -1586,27 +1816,69 @@
             });
         }
         
+        // Função para calcular dias úteis
+        function calculateWorkDays(effortHours) {
+            const hoursPerDay = 8;
+            const workDays = Math.ceil(effortHours / hoursPerDay);
+            return workDays;
+        }
+        
+        // Função para filtrar e ordenar projetos
+        function filterAndSortProjects() {
+            const priorityFilter = document.getElementById('priority-filter');
+            const sortBy = document.getElementById('sort-by');
+            
+            if (!priorityFilter || !sortBy) return;
+            
+            let filteredProjects = [...projects];
+            
+            // Aplicar filtro de prioridade
+            const selectedPriority = priorityFilter.value;
+            if (selectedPriority !== 'all') {
+                filteredProjects = filteredProjects.filter(project => {
+                    const calculatedPriority = calculateProjectPriority(project);
+                    return calculatedPriority === selectedPriority;
+                });
+            }
+            
+            // Aplicar ordenação
+            const sortCriteria = sortBy.value;
+            filteredProjects.sort((a, b) => {
+                switch (sortCriteria) {
+                    case 'priority':
+                        const priorityA = calculateProjectPriority(a);
+                        const priorityB = calculateProjectPriority(b);
+                        const priorityOrder = { 'alta': 3, 'média': 2, 'baixa': 1 };
+                        if (priorityOrder[priorityA] !== priorityOrder[priorityB]) {
+                            return priorityOrder[priorityB] - priorityOrder[priorityA];
+                        }
+                        return b.roi - a.roi;
+                    case 'roi':
+                        return b.roi - a.roi;
+                    case 'effort':
+                        return a.effort - b.effort;
+                    case 'efficiency':
+                        return calculateEfficiencyScore(b) - calculateEfficiencyScore(a);
+                    default:
+                        return 0;
+                }
+            });
+            
+            renderFilteredProjectsTable(filteredProjects);
+        }
+        
         // Função para renderizar a tabela de projetos
         function renderProjectsTable() {
+            filterAndSortProjects();
+        }
+        
+        // Função para renderizar tabela filtrada
+        function renderFilteredProjectsTable(filteredProjects) {
             const table = document.getElementById('projects-table');
             if (!table) return;
             
-            // Ordenar projetos por prioridade calculada
-            const sortedProjects = [...projects].sort((a, b) => {
-                const priorityA = calculateProjectPriority(a);
-                const priorityB = calculateProjectPriority(b);
-                
-                const priorityOrder = { 'alta': 3, 'média': 2, 'baixa': 1 };
-                if (priorityOrder[priorityA] !== priorityOrder[priorityB]) {
-                    return priorityOrder[priorityB] - priorityOrder[priorityA];
-                }
-                
-                // Se mesma prioridade, ordenar por ROI
-                return b.roi - a.roi;
-            });
-            
             table.innerHTML = `
-                <table class="table">
+                <table class="table premium-table">
                     <thead>
                         <tr>
                             <th>Projeto</th>
@@ -1614,6 +1886,7 @@
                             <th>Prioridade</th>
                             <th>ROI</th>
                             <th>Esforço</th>
+                            <th>Dias Úteis</th>
                             <th>Eficiência</th>
                             <th>Etapa</th>
                             <th>Orçamento</th>
@@ -1621,9 +1894,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${sortedProjects.map(project => {
+                        ${filteredProjects.map(project => {
                             const calculatedPriority = calculateProjectPriority(project);
                             const efficiencyScore = calculateEfficiencyScore(project);
+                            const workDays = calculateWorkDays(project.effort);
                             
                             return `
                                 <tr>
@@ -1633,17 +1907,18 @@
                                     </td>
                                     <td>${getCategoryName(project.category)}</td>
                                     <td>
-                                        <span class="priority-badge-table priority-${calculatedPriority}-table">
+                                        <span class="premium-badge priority-${calculatedPriority}-table">
                                             ${calculatedPriority}
                                         </span>
                                     </td>
                                     <td><span class="roi-value">${project.roi}%</span></td>
                                     <td><span class="effort-value">${project.effort}h</span></td>
+                                    <td><span class="work-days-value">${workDays} dias</span></td>
                                     <td><span class="efficiency-score">${efficiencyScore}</span></td>
                                     <td>${getStageName(project.currentStage)}</td>
                                     <td>R$ ${project.budget.toLocaleString('pt-BR')}</td>
                                     <td>
-                                        <button class="btn btn-primary" onclick="editProject(${project.id})" style="padding: 4px 8px; font-size: 0.8rem;">Editar</button>
+                                        <button class="btn btn-primary premium-button" onclick="editProject(${project.id})" style="padding: 4px 8px; font-size: 0.8rem;">Editar</button>
                                     </td>
                                 </tr>
                             `;

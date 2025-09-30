@@ -366,10 +366,10 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 2rem;
-            max-width: 650px;
+            padding: 1.5rem;
+            max-width: 800px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
@@ -434,12 +434,21 @@
             color: var(--text-primary);
         }
         
+        .project-details-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
         .project-details-section {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
+            padding: 0.75rem;
             background: rgba(15, 23, 42, 0.5);
             border-radius: 8px;
             border-left: 3px solid var(--primary-color);
+        }
+        
+        .project-details-section.full-width {
+            grid-column: 1 / -1;
         }
         
         .project-details-label {
@@ -463,8 +472,8 @@
             display: flex;
             gap: 0.75rem;
             justify-content: flex-end;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border-color);
         }
         
@@ -489,10 +498,10 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 2rem;
-            max-width: 700px;
+            padding: 1.5rem;
+            max-width: 750px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
@@ -728,10 +737,10 @@
         .modal-content {
             background: rgba(15, 23, 42, 0.98);
             border-radius: 16px;
-            padding: 2rem;
-            max-width: 650px;
+            padding: 1.5rem;
+            max-width: 900px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             overflow-x: hidden;
             border: 1px solid #334155;
@@ -761,11 +770,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #334155;
         }
         
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #f8fafc;
         }
@@ -784,22 +795,23 @@
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
         
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.375rem;
             font-weight: 500;
             color: #f8fafc;
+            font-size: 0.875rem;
         }
         
         .form-input {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
             transition: all 0.3s ease;
@@ -814,10 +826,10 @@
         
         .form-select {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
             transition: all 0.3s ease;
@@ -831,11 +843,12 @@
         
         .form-textarea {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
-            min-height: 100px;
+            font-size: 0.9375rem;
+            min-height: 70px;
+            max-height: 100px;
             resize: vertical;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
@@ -852,7 +865,13 @@
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 1rem;
+        }
+        
+        .form-row-triple {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
         }
         
         .loading {
@@ -898,10 +917,10 @@
         .modal-content {
             background: rgba(15, 23, 42, 0.98);
             border-radius: 16px;
-            padding: 2rem;
-            max-width: 650px;
+            padding: 1.5rem;
+            max-width: 900px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             overflow-x: hidden;
             border: 1px solid #334155;
@@ -931,11 +950,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #334155;
         }
         
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #f8fafc;
         }
@@ -954,22 +975,23 @@
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
         
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.375rem;
             font-weight: 500;
             color: #f8fafc;
+            font-size: 0.875rem;
         }
         
         .form-input {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
             transition: all 0.3s ease;
@@ -984,10 +1006,10 @@
         
         .form-select {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
             transition: all 0.3s ease;
@@ -1001,11 +1023,12 @@
         
         .form-textarea {
             width: 100%;
-            padding: 12px;
+            padding: 0.625rem;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 1rem;
-            min-height: 100px;
+            font-size: 0.9375rem;
+            min-height: 70px;
+            max-height: 100px;
             resize: vertical;
             background: rgba(40, 40, 40, 0.8);
             color: #f8fafc;
@@ -1022,7 +1045,13 @@
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 1rem;
+        }
+        
+        .form-row-triple {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
         }
         
         .add-project-btn {
@@ -2179,39 +2208,41 @@
                 <button class="project-details-close" onclick="closeProjectDetails()">&times;</button>
             </div>
             
-            <div class="project-details-section">
-                <div class="project-details-label">Categoria</div>
-                <div class="project-details-value" id="details-project-category"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">Descrição</div>
-                <div class="project-details-value" id="details-project-description"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">Etapa Atual</div>
-                <div class="project-details-value" id="details-project-stage"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">Prioridade</div>
-                <div class="project-details-value" id="details-project-priority"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">ROI Estimado</div>
-                <div class="project-details-value" id="details-project-roi"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">Esforço Estimado</div>
-                <div class="project-details-value" id="details-project-effort"></div>
-            </div>
-            
-            <div class="project-details-section">
-                <div class="project-details-label">Orçamento</div>
-                <div class="project-details-value" id="details-project-budget"></div>
+            <div class="project-details-body">
+                <div class="project-details-section">
+                    <div class="project-details-label">Categoria</div>
+                    <div class="project-details-value" id="details-project-category"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Etapa Atual</div>
+                    <div class="project-details-value" id="details-project-stage"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Prioridade</div>
+                    <div class="project-details-value" id="details-project-priority"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">ROI Estimado</div>
+                    <div class="project-details-value" id="details-project-roi"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Esforço Estimado</div>
+                    <div class="project-details-value" id="details-project-effort"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Orçamento</div>
+                    <div class="project-details-value" id="details-project-budget"></div>
+                </div>
+                
+                <div class="project-details-section full-width">
+                    <div class="project-details-label">Descrição</div>
+                    <div class="project-details-value" id="details-project-description"></div>
+                </div>
             </div>
             
             <div class="project-details-actions">
@@ -2232,19 +2263,21 @@
             <form id="project-form">
                 <input type="hidden" id="project-id" value="">
                 
-                <div class="form-group">
-                    <label class="form-label" for="project-name">Nome do Projeto *</label>
-                    <input type="text" class="form-input" id="project-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="project-category">Categoria *</label>
-                    <select class="form-select" id="project-category" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="sensores">Sensores e Monitoramento</option>
-                        <option value="rastreabilidade">Rastreabilidade e Operações</option>
-                        <option value="inovacao">Inovação e Projetos Especiais</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="project-name">Nome do Projeto *</label>
+                        <input type="text" class="form-input" id="project-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-category">Categoria *</label>
+                        <select class="form-select" id="project-category" required>
+                            <option value="">Selecione a categoria</option>
+                            <option value="sensores">Sensores e Monitoramento</option>
+                            <option value="rastreabilidade">Rastreabilidade e Operações</option>
+                            <option value="inovacao">Inovação e Projetos Especiais</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -2287,7 +2320,7 @@
                     </div>
                 </div>
                 
-                <div class="form-row">
+                <div class="form-row-triple">
                     <div class="form-group">
                         <label class="form-label" for="project-roi">ROI Estimado (%)</label>
                         <input type="number" class="form-input" id="project-roi" min="0" max="100" value="50">
@@ -2297,14 +2330,14 @@
                         <label class="form-label" for="project-effort">Esforço (horas)</label>
                         <input type="number" class="form-input" id="project-effort" min="0" value="100">
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-budget">Orçamento (R$)</label>
+                        <input type="number" class="form-input" id="project-budget" min="0" value="50000">
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="project-budget">Orçamento (R$)</label>
-                    <input type="number" class="form-input" id="project-budget" min="0" value="50000">
-                </div>
-                
-                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px;">
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem;">
                     <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Salvar Projeto</button>
                 </div>
@@ -2322,19 +2355,21 @@
             <form id="project-form">
                 <input type="hidden" id="project-id" value="">
                 
-                <div class="form-group">
-                    <label class="form-label" for="project-name">Nome do Projeto *</label>
-                    <input type="text" class="form-input" id="project-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="project-category">Categoria *</label>
-                    <select class="form-select" id="project-category" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="sensores">Sensores e Monitoramento</option>
-                        <option value="rastreabilidade">Rastreabilidade e Operações</option>
-                        <option value="inovacao">Inovação e Projetos Especiais</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="project-name">Nome do Projeto *</label>
+                        <input type="text" class="form-input" id="project-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-category">Categoria *</label>
+                        <select class="form-select" id="project-category" required>
+                            <option value="">Selecione a categoria</option>
+                            <option value="sensores">Sensores e Monitoramento</option>
+                            <option value="rastreabilidade">Rastreabilidade e Operações</option>
+                            <option value="inovacao">Inovação e Projetos Especiais</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -2377,7 +2412,7 @@
                     </div>
                 </div>
                 
-                <div class="form-row">
+                <div class="form-row-triple">
                     <div class="form-group">
                         <label class="form-label" for="project-roi">ROI Estimado (%)</label>
                         <input type="number" class="form-input" id="project-roi" min="0" max="100" value="50">
@@ -2387,14 +2422,14 @@
                         <label class="form-label" for="project-effort">Esforço (horas)</label>
                         <input type="number" class="form-input" id="project-effort" min="0" value="100">
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="project-budget">Orçamento (R$)</label>
+                        <input type="number" class="form-input" id="project-budget" min="0" value="50000">
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="project-budget">Orçamento (R$)</label>
-                    <input type="number" class="form-input" id="project-budget" min="0" value="50000">
-                </div>
-                
-                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px;">
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem;">
                     <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Salvar Projeto</button>
                 </div>

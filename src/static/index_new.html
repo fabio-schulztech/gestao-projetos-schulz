@@ -268,6 +268,7 @@
             border: 1px solid #334155;
             border-radius: 16px;
             padding: 24px;
+            padding-bottom: 3.5rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -421,58 +422,68 @@
         }
         
         .project-actions {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
             display: flex;
-            gap: 10px;
+            gap: 0.5rem;
+            z-index: 20;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-actions {
+            opacity: 1;
         }
         
         .btn {
-            padding: 8px 16px;
+            padding: 0.375rem 0.75rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             transition: all 0.3s ease;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+            transform: translateY(-1px);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            background: rgba(59, 130, 246, 0.9);
             color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.5);
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #2563eb, #0891b2);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 1);
+            border-color: rgba(59, 130, 246, 0.8);
         }
         
         .btn-secondary {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.6);
             color: #94a3b8;
-            border: 1px solid #334155;
-            font-weight: 600;
+            border: 1px solid rgba(51, 65, 85, 0.5);
         }
         
         .btn-secondary:hover {
-            background: rgba(30, 41, 59, 1);
+            background: rgba(30, 41, 59, 0.8);
             color: #f8fafc;
-            border-color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.5);
         }
         
         .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background: rgba(239, 68, 68, 0.9);
             color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-            font-weight: 600;
+            border: 1px solid rgba(239, 68, 68, 0.5);
         }
         
         .btn-danger:hover {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 1);
+            border-color: rgba(239, 68, 68, 0.8);
         }
         
         .modal {

@@ -9,6 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Paleta de Cores Schulz Tech - Executiva */
+        :root {
+            --primary-color: #1e40af;      /* Azul corporativo profundo */
+            --secondary-color: #374151;    /* Cinza executivo */
+            --accent-color: #059669;       /* Verde corporativo */
+            --warning-color: #d97706;      /* Laranja executivo */
+            --danger-color: #dc2626;       /* Vermelho corporativo */
+            --dark-bg: #111827;            /* Fundo escuro executivo */
+            --card-bg: #1f2937;           /* Cards executivos */
+            --text-primary: #f9fafb;       /* Texto principal */
+            --text-secondary: #9ca3af;     /* Texto secundário */
+            --border-color: #374151;       /* Bordas executivas */
+            --success-color: #10b981;      /* Verde sucesso */
+            --info-color: #3b82f6;         /* Azul informação */
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -17,9 +33,9 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 50%, var(--dark-bg) 100%);
             min-height: 100vh;
-            color: #f8fafc;
+            color: var(--text-primary);
         }
         
         .container {
@@ -1247,6 +1263,93 @@
             color: white;
         }
         
+        /* Estilos para Gráficos Temporais */
+        .timeline-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .timeline-header h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .timeline-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .timeline-charts {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-container h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chart-container canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        /* Atualização das Cores dos KPIs Executivos */
+        .executive-metric.progress {
+            border-left: 4px solid var(--info-color);
+        }
+        
+        .executive-metric.financial {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .executive-metric.efficiency {
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .executive-metric.quality {
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        
+        .metric-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -1269,66 +1372,58 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Gestão de Projetos - Schulz Tech</h1>
-            <p>Dashboard de acompanhamento e priorização de projetos tecnológicos</p>
+            <h1>Gestão de Projetos - Schulz Tech</h1>
+            <p>Dashboard Executivo de Acompanhamento e Priorização de Projetos Tecnológicos</p>
         </div>
         
         <div class="stats" id="stats">
             <!-- Indicadores de Progresso -->
-            <div class="stat-card premium-metric executive-metric">
-                <div class="metric-icon">📊</div>
+            <div class="stat-card executive-metric progress">
                 <div class="metric-number" id="completion-rate">0%</div>
                 <div class="metric-label">Taxa de Conclusão</div>
                 <div class="metric-subtitle">Projetos finalizados</div>
             </div>
             
-            <div class="stat-card premium-metric executive-metric">
-                <div class="metric-icon">⚡</div>
+            <div class="stat-card executive-metric progress">
                 <div class="metric-number" id="velocity-score">0</div>
                 <div class="metric-label">Velocidade do Time</div>
                 <div class="metric-subtitle">Projetos/mês</div>
             </div>
             
             <!-- Indicadores Financeiros -->
-            <div class="stat-card premium-metric executive-metric financial">
-                <div class="metric-icon">💰</div>
+            <div class="stat-card executive-metric financial">
                 <div class="metric-number" id="total-investment">R$ 0</div>
                 <div class="metric-label">Investimento Total</div>
                 <div class="metric-subtitle">Orçamento alocado</div>
             </div>
             
-            <div class="stat-card premium-metric executive-metric financial">
-                <div class="metric-icon">📈</div>
+            <div class="stat-card executive-metric financial">
                 <div class="metric-number" id="expected-return">R$ 0</div>
                 <div class="metric-label">Retorno Esperado</div>
                 <div class="metric-subtitle">Baseado no ROI</div>
             </div>
             
             <!-- Indicadores de Eficiência -->
-            <div class="stat-card premium-metric executive-metric efficiency">
-                <div class="metric-icon">🎯</div>
+            <div class="stat-card executive-metric efficiency">
                 <div class="metric-number" id="efficiency-index">0</div>
                 <div class="metric-label">Índice de Eficiência</div>
                 <div class="metric-subtitle">ROI/Esforço</div>
             </div>
             
-            <div class="stat-card premium-metric executive-metric efficiency">
-                <div class="metric-icon">⏱️</div>
+            <div class="stat-card executive-metric efficiency">
                 <div class="metric-number" id="avg-delivery-time">0</div>
                 <div class="metric-label">Tempo Médio</div>
                 <div class="metric-subtitle">Dias úteis</div>
             </div>
             
             <!-- Indicadores de Qualidade -->
-            <div class="stat-card premium-metric executive-metric quality">
-                <div class="metric-icon">🏆</div>
+            <div class="stat-card executive-metric quality">
                 <div class="metric-number" id="success-rate">0%</div>
                 <div class="metric-label">Taxa de Sucesso</div>
                 <div class="metric-subtitle">Projetos no prazo</div>
             </div>
             
-            <div class="stat-card premium-metric executive-metric quality">
-                <div class="metric-icon">🚀</div>
+            <div class="stat-card executive-metric quality">
                 <div class="metric-number" id="innovation-index">0</div>
                 <div class="metric-label">Índice de Inovação</div>
                 <div class="metric-subtitle">Projetos especiais</div>
@@ -1337,11 +1432,12 @@
         
         <div class="main-content">
             <div class="tabs">
-                <button class="tab premium-tab active" data-tab="dashboard">📊 Dashboard</button>
-                <button class="tab premium-tab" data-tab="consolidated">📋 Visão Consolidada</button>
-                <button class="tab premium-tab" data-tab="sensores">⚙️ Sensores</button>
-                <button class="tab premium-tab" data-tab="rastreabilidade">📡 Rastreabilidade</button>
-                <button class="tab premium-tab" data-tab="inovacao">🚀 Inovação</button>
+                <button class="tab premium-tab active" data-tab="dashboard">Dashboard</button>
+                <button class="tab premium-tab" data-tab="consolidated">Visão Consolidada</button>
+                <button class="tab premium-tab" data-tab="timeline">Evolução Temporal</button>
+                <button class="tab premium-tab" data-tab="sensores">Sensores</button>
+                <button class="tab premium-tab" data-tab="rastreabilidade">Rastreabilidade</button>
+                <button class="tab premium-tab" data-tab="inovacao">Inovação</button>
             </div>
             
             <div class="tab-content active" id="dashboard">
@@ -1351,14 +1447,38 @@
                 </div>
             </div>
             
+            <div class="tab-content" id="timeline">
+                <div class="timeline-header">
+                    <h3>Evolução Temporal dos Projetos</h3>
+                    <p>Análise de tendências e performance ao longo do tempo</p>
+                </div>
+                
+                <div class="timeline-charts">
+                    <div class="chart-container">
+                        <h4>Progresso dos Projetos por Mês</h4>
+                        <canvas id="progressChart" width="800" height="400"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h4>ROI Médio por Trimestre</h4>
+                        <canvas id="roiChart" width="800" height="400"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h4>Distribuição de Esforço vs ROI</h4>
+                        <canvas id="scatterChart" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            
             <div class="tab-content" id="consolidated">
                 <div class="consolidated-header">
-                    <h3>📋 Visão Consolidada de Projetos</h3>
+                    <h3>Visão Consolidada de Projetos</h3>
                     <p>Projetos ordenados por priorização baseada em ROI e esforço</p>
                 </div>
                 
                 <div class="priority-matrix">
-                    <h4>🎯 Matriz de Priorização</h4>
+                    <h4>Matriz de Priorização</h4>
                     <div class="matrix-container">
                         <div class="matrix-quadrant high-roi-low-effort">
                             <div class="quadrant-label">Alto ROI<br>Baixo Esforço</div>
@@ -1380,7 +1500,7 @@
                 </div>
                 
                 <div class="projects-table-container">
-                    <h4>📊 Lista de Projetos Priorizados</h4>
+                    <h4>Lista de Projetos Priorizados</h4>
                     <div class="table-controls">
                         <div class="filter-group">
                             <label>Filtrar por:</label>
@@ -1761,7 +1881,15 @@
             document.getElementById(tabName).classList.add('active');
             
             currentTab = tabName;
-            renderProjects();
+            
+            // Renderizar conteúdo baseado na tab
+            if (tabName === 'timeline') {
+                renderTimelineCharts();
+            } else if (tabName === 'consolidated') {
+                renderConsolidatedView();
+            } else {
+                renderProjects();
+            }
         }
         
         function renderProjects() {
@@ -2235,6 +2363,193 @@
                     </tbody>
                 </table>
             `;
+        }
+        
+        // Função para renderizar gráficos temporais
+        function renderTimelineCharts() {
+            // Dados simulados para demonstração
+            const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+            const progressData = [10, 25, 40, 35, 50, 65, 70, 80, 75, 85, 90, 95];
+            const roiData = [15, 18, 22, 25, 28, 30, 32, 35, 38, 40, 42, 45];
+            
+            // Gráfico de Progresso
+            const progressCtx = document.getElementById('progressChart');
+            if (progressCtx) {
+                drawLineChart(progressCtx, months, progressData, 'Progresso dos Projetos (%)', '#3b82f6');
+            }
+            
+            // Gráfico de ROI
+            const roiCtx = document.getElementById('roiChart');
+            if (roiCtx) {
+                drawBarChart(roiCtx, months, roiData, 'ROI Médio (%)', '#10b981');
+            }
+            
+            // Gráfico de Dispersão
+            const scatterCtx = document.getElementById('scatterChart');
+            if (scatterCtx) {
+                drawScatterChart(scatterCtx);
+            }
+        }
+        
+        // Função para desenhar gráfico de linha
+        function drawLineChart(ctx, labels, data, title, color) {
+            const canvas = ctx;
+            const c = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Limpar canvas
+            c.clearRect(0, 0, width, height);
+            
+            // Configurações
+            const padding = 40;
+            const chartWidth = width - 2 * padding;
+            const chartHeight = height - 2 * padding;
+            
+            // Desenhar eixos
+            c.strokeStyle = '#374151';
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(padding, padding);
+            c.lineTo(padding, height - padding);
+            c.lineTo(width - padding, height - padding);
+            c.stroke();
+            
+            // Desenhar linha de dados
+            c.strokeStyle = color;
+            c.lineWidth = 3;
+            c.beginPath();
+            
+            data.forEach((value, index) => {
+                const x = padding + (index * chartWidth) / (data.length - 1);
+                const y = height - padding - (value * chartHeight) / 100;
+                
+                if (index === 0) {
+                    c.moveTo(x, y);
+                } else {
+                    c.lineTo(x, y);
+                }
+            });
+            c.stroke();
+            
+            // Desenhar pontos
+            c.fillStyle = color;
+            data.forEach((value, index) => {
+                const x = padding + (index * chartWidth) / (data.length - 1);
+                const y = height - padding - (value * chartHeight) / 100;
+                
+                c.beginPath();
+                c.arc(x, y, 4, 0, 2 * Math.PI);
+                c.fill();
+            });
+            
+            // Desenhar labels
+            c.fillStyle = '#9ca3af';
+            c.font = '12px Inter';
+            c.textAlign = 'center';
+            labels.forEach((label, index) => {
+                const x = padding + (index * chartWidth) / (labels.length - 1);
+                c.fillText(label, x, height - padding + 20);
+            });
+        }
+        
+        // Função para desenhar gráfico de barras
+        function drawBarChart(ctx, labels, data, title, color) {
+            const canvas = ctx;
+            const c = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Limpar canvas
+            c.clearRect(0, 0, width, height);
+            
+            // Configurações
+            const padding = 40;
+            const chartWidth = width - 2 * padding;
+            const chartHeight = height - 2 * padding;
+            const barWidth = chartWidth / data.length * 0.8;
+            
+            // Desenhar eixos
+            c.strokeStyle = '#374151';
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(padding, padding);
+            c.lineTo(padding, height - padding);
+            c.lineTo(width - padding, height - padding);
+            c.stroke();
+            
+            // Desenhar barras
+            data.forEach((value, index) => {
+                const x = padding + (index * chartWidth) / data.length + (chartWidth / data.length - barWidth) / 2;
+                const barHeight = (value * chartHeight) / 100;
+                const y = height - padding - barHeight;
+                
+                c.fillStyle = color;
+                c.fillRect(x, y, barWidth, barHeight);
+            });
+            
+            // Desenhar labels
+            c.fillStyle = '#9ca3af';
+            c.font = '12px Inter';
+            c.textAlign = 'center';
+            labels.forEach((label, index) => {
+                const x = padding + (index * chartWidth) / labels.length + chartWidth / labels.length / 2;
+                c.fillText(label, x, height - padding + 20);
+            });
+        }
+        
+        // Função para desenhar gráfico de dispersão
+        function drawScatterChart(ctx) {
+            const canvas = ctx;
+            const c = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Limpar canvas
+            c.clearRect(0, 0, width, height);
+            
+            // Configurações
+            const padding = 40;
+            const chartWidth = width - 2 * padding;
+            const chartHeight = height - 2 * padding;
+            
+            // Desenhar eixos
+            c.strokeStyle = '#374151';
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(padding, padding);
+            c.lineTo(padding, height - padding);
+            c.lineTo(width - padding, height - padding);
+            c.stroke();
+            
+            // Desenhar pontos de dispersão
+            projects.forEach(project => {
+                const x = padding + (project.effort / 200) * chartWidth; // Normalizar esforço
+                const y = height - padding - (project.roi / 100) * chartHeight; // Normalizar ROI
+                
+                const priority = calculateProjectPriority(project);
+                let color = '#3b82f6';
+                if (priority === 'alta') color = '#dc2626';
+                else if (priority === 'média') color = '#d97706';
+                else if (priority === 'baixa') color = '#10b981';
+                
+                c.fillStyle = color;
+                c.beginPath();
+                c.arc(x, y, 6, 0, 2 * Math.PI);
+                c.fill();
+            });
+            
+            // Labels dos eixos
+            c.fillStyle = '#9ca3af';
+            c.font = '12px Inter';
+            c.textAlign = 'center';
+            c.fillText('Esforço (h)', width / 2, height - 10);
+            
+            c.save();
+            c.translate(20, height / 2);
+            c.rotate(-Math.PI / 2);
+            c.fillText('ROI (%)', 0, 0);
+            c.restore();
         }
     </script>
 </body>

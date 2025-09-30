@@ -103,29 +103,30 @@
         
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1rem;
             margin-bottom: 1.5rem;
             max-height: 30vh;
-            overflow: hidden;
         }
         
         .stat-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 12px;
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: center;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            min-height: 70px;
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 1;
+            cursor: pointer;
         }
         
         .stat-card::before {
@@ -446,6 +447,97 @@
             margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
+        }
+        
+        .kpi-explanation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1200;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .kpi-explanation-modal.active {
+            display: flex;
+        }
+        
+        .kpi-explanation-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        .kpi-explanation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .kpi-explanation-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .kpi-current-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+        }
+        
+        .kpi-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .kpi-section-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .kpi-section-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9375rem;
+        }
+        
+        .kpi-formula {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            color: #3b82f6;
+            font-size: 0.9375rem;
         }
         
         .progress-container {
@@ -1691,52 +1783,52 @@
         
         <div class="stats" id="stats">
             <!-- Indicadores de Progresso -->
-            <div class="stat-card executive-metric progress">
+            <div class="stat-card executive-metric progress" onclick="showKPIExplanation('completion-rate')">
                 <div class="metric-number" id="completion-rate">0%</div>
                 <div class="metric-label">Taxa de Conclusão</div>
                 <div class="metric-subtitle">Projetos finalizados</div>
             </div>
             
-            <div class="stat-card executive-metric progress">
+            <div class="stat-card executive-metric progress" onclick="showKPIExplanation('velocity-score')">
                 <div class="metric-number" id="velocity-score">0</div>
                 <div class="metric-label">Velocidade do Time</div>
                 <div class="metric-subtitle">Projetos/mês</div>
             </div>
             
             <!-- Indicadores Financeiros -->
-            <div class="stat-card executive-metric financial">
+            <div class="stat-card executive-metric financial" onclick="showKPIExplanation('total-investment')">
                 <div class="metric-number" id="total-investment">R$ 0</div>
                 <div class="metric-label">Investimento Total</div>
                 <div class="metric-subtitle">Orçamento alocado</div>
             </div>
             
-            <div class="stat-card executive-metric financial">
+            <div class="stat-card executive-metric financial" onclick="showKPIExplanation('expected-return')">
                 <div class="metric-number" id="expected-return">R$ 0</div>
                 <div class="metric-label">Retorno Esperado</div>
                 <div class="metric-subtitle">Baseado no ROI</div>
             </div>
             
             <!-- Indicadores de Eficiência -->
-            <div class="stat-card executive-metric efficiency">
+            <div class="stat-card executive-metric efficiency" onclick="showKPIExplanation('efficiency-index')">
                 <div class="metric-number" id="efficiency-index">0</div>
                 <div class="metric-label">Índice de Eficiência</div>
                 <div class="metric-subtitle">ROI/Esforço</div>
             </div>
             
-            <div class="stat-card executive-metric efficiency">
+            <div class="stat-card executive-metric efficiency" onclick="showKPIExplanation('avg-delivery-time')">
                 <div class="metric-number" id="avg-delivery-time">0</div>
                 <div class="metric-label">Tempo Médio</div>
                 <div class="metric-subtitle">Dias úteis</div>
             </div>
             
             <!-- Indicadores de Qualidade -->
-            <div class="stat-card executive-metric quality">
+            <div class="stat-card executive-metric quality" onclick="showKPIExplanation('success-rate')">
                 <div class="metric-number" id="success-rate">0%</div>
                 <div class="metric-label">Taxa de Sucesso</div>
                 <div class="metric-subtitle">Projetos no prazo</div>
             </div>
             
-            <div class="stat-card executive-metric quality">
+            <div class="stat-card executive-metric quality" onclick="showKPIExplanation('innovation-index')">
                 <div class="metric-number" id="innovation-index">0</div>
                 <div class="metric-label">Índice de Inovação</div>
                 <div class="metric-subtitle">Projetos especiais</div>
@@ -1841,6 +1933,33 @@
                         <div class="loading">Carregando tabela...</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Explicação dos KPIs -->
+    <div class="kpi-explanation-modal" id="kpi-explanation-modal">
+        <div class="kpi-explanation-content">
+            <div class="kpi-explanation-header">
+                <h2 class="kpi-explanation-title" id="kpi-title">KPI</h2>
+                <button class="project-details-close" onclick="closeKPIExplanation()">&times;</button>
+            </div>
+            
+            <div class="kpi-current-value" id="kpi-current-value">0</div>
+            
+            <div class="kpi-section">
+                <div class="kpi-section-title">Objetivo do Indicador</div>
+                <div class="kpi-section-content" id="kpi-objective"></div>
+            </div>
+            
+            <div class="kpi-section">
+                <div class="kpi-section-title">Cálculo Utilizado</div>
+                <div class="kpi-formula" id="kpi-formula"></div>
+                <div class="kpi-section-content" id="kpi-calculation"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
+                <button class="btn btn-secondary" onclick="closeKPIExplanation()">Fechar</button>
             </div>
         </div>
     </div>
@@ -2421,6 +2540,82 @@
         
         function closeProjectDetails() {
             document.getElementById('project-details-modal').classList.remove('active');
+        }
+        
+        function showKPIExplanation(kpiId) {
+            const kpiData = {
+                'completion-rate': {
+                    title: 'Taxa de Conclusão',
+                    value: document.getElementById('completion-rate').textContent,
+                    objective: 'Medir a efetividade do time em finalizar projetos iniciados. Um valor alto indica boa capacidade de entrega e execução.',
+                    formula: '(Projetos Finalizados / Total de Projetos) × 100',
+                    calculation: `Total de Projetos: ${projects.length}\nProjetos Finalizados (Etapa 5): ${projects.filter(p => p.currentStage === 5).length}\n\nCálculo: (${projects.filter(p => p.currentStage === 5).length} / ${projects.length}) × 100 = ${document.getElementById('completion-rate').textContent}`
+                },
+                'velocity-score': {
+                    title: 'Velocidade do Time',
+                    value: document.getElementById('velocity-score').textContent,
+                    objective: 'Avaliar a produtividade do time medindo quantos projetos são concluídos por mês. Indica capacidade de throughput da equipe.',
+                    formula: 'Total de Projetos / 12 meses',
+                    calculation: `Total de Projetos: ${projects.length}\nPeríodo: 12 meses\n\nCálculo: ${projects.length} / 12 = ${(projects.length / 12).toFixed(1)} projetos/mês`
+                },
+                'total-investment': {
+                    title: 'Investimento Total',
+                    value: document.getElementById('total-investment').textContent,
+                    objective: 'Totalizar o capital alocado em todos os projetos. Essencial para controle orçamentário e análise de portfólio.',
+                    formula: 'Soma de todos os orçamentos',
+                    calculation: `Projetos: ${projects.length}\n\nCálculo: ${projects.map(p => `R$ ${p.budget.toLocaleString('pt-BR')}`).join(' + ')}\n\nTotal = ${document.getElementById('total-investment').textContent}`
+                },
+                'expected-return': {
+                    title: 'Retorno Esperado',
+                    value: document.getElementById('expected-return').textContent,
+                    objective: 'Estimar o retorno financeiro total baseado no ROI projetado de cada projeto. Auxilia na justificativa de investimentos.',
+                    formula: 'Σ (Orçamento × ROI%)',
+                    calculation: `Cálculo por projeto:\n${projects.map(p => `${p.name}: R$ ${p.budget.toLocaleString('pt-BR')} × ${p.roi}% = R$ ${((p.budget * p.roi) / 100).toLocaleString('pt-BR')}`).join('\n')}\n\nTotal = ${document.getElementById('expected-return').textContent}`
+                },
+                'efficiency-index': {
+                    title: 'Índice de Eficiência',
+                    value: document.getElementById('efficiency-index').textContent,
+                    objective: 'Relacionar retorno com esforço necessário. Valores altos indicam projetos que geram muito valor com pouco investimento de tempo.',
+                    formula: 'ROI Médio / Esforço Médio (normalizado)',
+                    calculation: `ROI Médio: ${(projects.reduce((acc, p) => acc + p.roi, 0) / projects.length).toFixed(1)}%\nEsforço Médio: ${(projects.reduce((acc, p) => acc + p.effort, 0) / projects.length).toFixed(0)}h\n\nCálculo: ${document.getElementById('efficiency-index').textContent}`
+                },
+                'avg-delivery-time': {
+                    title: 'Tempo Médio de Entrega',
+                    value: document.getElementById('avg-delivery-time').textContent,
+                    objective: 'Calcular o tempo médio necessário para conclusão dos projetos. Ajuda no planejamento de recursos e prazos.',
+                    formula: '(Σ Esforços / 8h/dia) / Total de Projetos',
+                    calculation: `Esforço Total: ${projects.reduce((acc, p) => acc + p.effort, 0)}h\nTotal de Projetos: ${projects.length}\nHoras por dia: 8h\n\nCálculo: (${projects.reduce((acc, p) => acc + p.effort, 0)} / 8) / ${projects.length} = ${document.getElementById('avg-delivery-time').textContent}`
+                },
+                'success-rate': {
+                    title: 'Taxa de Sucesso',
+                    value: document.getElementById('success-rate').textContent,
+                    objective: 'Medir a capacidade de entregar projetos dentro do prazo estimado. Indicador de previsibilidade e gestão de cronograma.',
+                    formula: '(Projetos no Prazo / Total) × 100',
+                    calculation: `Projetos com eficiência alta (ROI > Esforço): ${projects.filter(p => p.roi > (p.effort/10)).length}\nTotal de Projetos: ${projects.length}\n\nCálculo: (${projects.filter(p => p.roi > (p.effort/10)).length} / ${projects.length}) × 100 = ${document.getElementById('success-rate').textContent}`
+                },
+                'innovation-index': {
+                    title: 'Índice de Inovação',
+                    value: document.getElementById('innovation-index').textContent,
+                    objective: 'Identificar a quantidade de projetos estratégicos e inovadores no portfólio. Reflete o foco em transformação digital.',
+                    formula: '(Projetos de Inovação / Total) × 100',
+                    calculation: `Projetos de Inovação: ${projects.filter(p => p.category === 'inovacao').length}\nTotal de Projetos: ${projects.length}\n\nCálculo: (${projects.filter(p => p.category === 'inovacao').length} / ${projects.length}) × 100 = ${document.getElementById('innovation-index').textContent}`
+                }
+            };
+            
+            const kpi = kpiData[kpiId];
+            if (!kpi) return;
+            
+            document.getElementById('kpi-title').textContent = kpi.title;
+            document.getElementById('kpi-current-value').textContent = kpi.value;
+            document.getElementById('kpi-objective').textContent = kpi.objective;
+            document.getElementById('kpi-formula').textContent = kpi.formula;
+            document.getElementById('kpi-calculation').textContent = kpi.calculation;
+            
+            document.getElementById('kpi-explanation-modal').classList.add('active');
+        }
+        
+        function closeKPIExplanation() {
+            document.getElementById('kpi-explanation-modal').classList.remove('active');
         }
         
         async function handleProjectSubmit(e) {

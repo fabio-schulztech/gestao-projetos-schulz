@@ -19,7 +19,7 @@ NC='\033[0m' # No Color
 
 # Variáveis
 DOMAIN="iot.schulztech.com.br"
-EMAIL="admin@schulztech.com.br"  # ALTERE ESTE EMAIL
+EMAIL="fabio@schulztech.com.br"  # ALTERE ESTE EMAIL
 APP_PORT=53000
 APP_PATH="/home/fabio/gestao-projetos-schulz"
 

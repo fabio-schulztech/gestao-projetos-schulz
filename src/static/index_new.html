@@ -58,13 +58,16 @@
         }
         
         .header {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 48px 32px;
-            margin-bottom: 32px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 24px;
+            padding: 2rem 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -73,22 +76,66 @@
             content: '';
             position: absolute;
             top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(59, 130, 246, 0.05),
+                transparent
+            );
+            animation: liquidShine 8s ease-in-out infinite;
+        }
+        
+        @keyframes liquidShine {
+            0%, 100% {
+                transform: translateX(-50%);
+            }
+            50% {
+                transform: translateX(50%);
+            }
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(59, 130, 246, 0.3) 20%,
+                rgba(59, 130, 246, 0.3) 80%,
+                transparent
+            );
         }
         
         .header h1 {
-            margin-bottom: 16px;
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: -0.03em;
             text-align: center;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 2px;
+            opacity: 0.6;
         }
         
         .header p {
@@ -99,6 +146,7 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            display: none;
         }
         
         .stats {
@@ -1847,12 +1895,13 @@
                 padding: 10px;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .header {
+                padding: 1.5rem 2rem;
+                border-radius: 20px;
             }
             
-            .header p {
-                font-size: 1rem;
+            .header h1 {
+                font-size: 2rem;
             }
             
             .stats {
@@ -1967,12 +2016,13 @@
         }
         
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5rem;
+            .header {
+                padding: 1rem 1.5rem;
+                border-radius: 16px;
             }
             
-            .header p {
-                font-size: 0.875rem;
+            .header h1 {
+                font-size: 1.5rem;
             }
             
             .stats {
@@ -2014,7 +2064,6 @@
     <div class="container">
         <div class="header">
             <h1>Gestão de Projetos - Schulz Tech</h1>
-            <p>Dashboard Executivo de Acompanhamento e Priorização de Projetos Tecnológicos</p>
         </div>
         
         <div class="stats" id="stats">

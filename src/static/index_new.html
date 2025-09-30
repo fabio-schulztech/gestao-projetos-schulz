@@ -371,9 +371,28 @@
             width: 90%;
             max-height: 85vh;
             overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: modalSlideIn 0.3s ease;
+        }
+        
+        .project-details-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .project-details-content::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 4px;
+        }
+        
+        .project-details-content::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        
+        .project-details-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
         
         @keyframes modalSlideIn {
@@ -475,9 +494,28 @@
             width: 90%;
             max-height: 85vh;
             overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: modalSlideIn 0.3s ease;
+        }
+        
+        .kpi-explanation-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .kpi-explanation-content::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 4px;
+        }
+        
+        .kpi-explanation-content::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        
+        .kpi-explanation-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
         
         .kpi-explanation-header {
@@ -689,14 +727,34 @@
         
         .modal-content {
             background: rgba(15, 23, 42, 0.98);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 650px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            overflow-x: hidden;
             border: 1px solid #334155;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 4px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
         
         .modal-header {
@@ -839,14 +897,34 @@
         
         .modal-content {
             background: rgba(15, 23, 42, 0.98);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 650px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            overflow-x: hidden;
             border: 1px solid #334155;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 4px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
         
         .modal-header {
@@ -1740,10 +1818,19 @@
                 padding: 10px;
             }
             
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
             .stats {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
                 gap: 0.5rem;
-                max-height: 25vh;
+                max-height: 35vh;
             }
             
             .stat-card {
@@ -1777,6 +1864,119 @@
             
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            .matrix-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 1fr);
+            }
+            
+            .matrix-quadrant {
+                min-height: 70px;
+            }
+            
+            .modal-content,
+            .project-details-content,
+            .kpi-explanation-content {
+                width: 95%;
+                max-width: 100%;
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+            
+            .modal-header,
+            .project-details-header,
+            .kpi-explanation-header {
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+            }
+            
+            .modal-title,
+            .project-details-title,
+            .kpi-explanation-title {
+                font-size: 1.25rem;
+            }
+            
+            .kpi-current-value {
+                font-size: 1.5rem;
+            }
+            
+            .project-details-section,
+            .kpi-section {
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+            }
+            
+            .matrix-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
+            
+            .modal-content,
+            .project-details-content,
+            .kpi-explanation-content {
+                width: 85%;
+                max-width: 600px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 0.875rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(8, 1fr);
+            }
+            
+            .modal-content,
+            .project-details-content,
+            .kpi-explanation-content {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+                padding: 1rem;
+            }
+            
+            .kpi-explanation-header,
+            .project-details-header,
+            .modal-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .project-details-actions,
+            .modal-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .project-details-actions .btn,
+            .modal-footer .btn {
+                width: 100%;
             }
         }
     </style>

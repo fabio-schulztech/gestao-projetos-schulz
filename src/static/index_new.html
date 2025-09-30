@@ -103,22 +103,28 @@
         
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            max-height: 30vh;
+            overflow: hidden;
         }
         
         .stat-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 32px 24px;
+            border-radius: 12px;
+            padding: 0.75rem;
             text-align: center;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .stat-card::before {
@@ -134,7 +140,7 @@
         }
         
         .stat-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
@@ -144,22 +150,24 @@
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 1.75rem;
             font-weight: 800;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 12px;
+            margin-bottom: 0.25rem;
             line-height: 1;
         }
         
         .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .main-content {
@@ -1413,28 +1421,32 @@
         }
         
         .metric-number {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary-color), var(--info-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 8px;
+            margin-bottom: 0.25rem;
+            line-height: 1;
         }
         
         .metric-label {
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .metric-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.625rem;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 0.125rem;
             font-weight: 500;
+            line-height: 1.2;
         }
         
         @media (max-width: 768px) {
@@ -1443,7 +1455,34 @@
             }
             
             .stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.5rem;
+                max-height: 25vh;
+            }
+            
+            .stat-card {
+                padding: 0.5rem;
+                min-height: 60px;
+            }
+            
+            .stat-number {
+                font-size: 1.25rem;
+            }
+            
+            .stat-label {
+                font-size: 0.625rem;
+            }
+            
+            .metric-number {
+                font-size: 1.25rem;
+            }
+            
+            .metric-label {
+                font-size: 0.625rem;
+            }
+            
+            .metric-subtitle {
+                font-size: 0.5rem;
             }
             
             .projects-grid {

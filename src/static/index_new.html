@@ -1071,6 +1071,182 @@
             color: #f8fafc;
         }
         
+        /* Slider de Etapa */
+        .stage-slider-container {
+            margin-top: 15px;
+        }
+        
+        .stage-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #22c55e, #f59e0b, #ef4444);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .stage-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: 3px solid #f8fafc;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .stage-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: 3px solid #f8fafc;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .stage-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        
+        .stage-label {
+            text-align: center;
+            flex: 1;
+        }
+        
+        /* Seletor de Prioridades */
+        .priority-selector {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .priority-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(15, 23, 42, 0.8);
+        }
+        
+        .priority-option:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .priority-option.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .priority-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #f8fafc;
+        }
+        
+        .priority-baixa {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        
+        .priority-média {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .priority-alta {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        /* KPIs Executivos */
+        .executive-metric {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .executive-metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.8s;
+        }
+        
+        .executive-metric:hover::before {
+            left: 100%;
+        }
+        
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        .metric-subtitle {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        
+        .executive-metric.financial {
+            border-left: 4px solid #22c55e;
+        }
+        
+        .executive-metric.efficiency {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .executive-metric.quality {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        /* Sistema de Cores para Prioridades */
+        .priority-badge.priority-baixa {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+        
+        .priority-badge.priority-média {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .priority-badge.priority-alta {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+        
+        .priority-alta-table {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+        
+        .priority-média-table {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .priority-baixa-table {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -1098,37 +1274,64 @@
         </div>
         
         <div class="stats" id="stats">
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="total-projects">0</div>
-                <div class="metric-label">Total de Projetos</div>
+            <!-- Indicadores de Progresso -->
+            <div class="stat-card premium-metric executive-metric">
+                <div class="metric-icon">📊</div>
+                <div class="metric-number" id="completion-rate">0%</div>
+                <div class="metric-label">Taxa de Conclusão</div>
+                <div class="metric-subtitle">Projetos finalizados</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="completed-projects">0</div>
-                <div class="metric-label">Finalizados</div>
+            
+            <div class="stat-card premium-metric executive-metric">
+                <div class="metric-icon">⚡</div>
+                <div class="metric-number" id="velocity-score">0</div>
+                <div class="metric-label">Velocidade do Time</div>
+                <div class="metric-subtitle">Projetos/mês</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="avg-roi">0%</div>
-                <div class="metric-label">ROI Médio</div>
+            
+            <!-- Indicadores Financeiros -->
+            <div class="stat-card premium-metric executive-metric financial">
+                <div class="metric-icon">💰</div>
+                <div class="metric-number" id="total-investment">R$ 0</div>
+                <div class="metric-label">Investimento Total</div>
+                <div class="metric-subtitle">Orçamento alocado</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="efficiency-score">0</div>
-                <div class="metric-label">Score Eficiência</div>
+            
+            <div class="stat-card premium-metric executive-metric financial">
+                <div class="metric-icon">📈</div>
+                <div class="metric-number" id="expected-return">R$ 0</div>
+                <div class="metric-label">Retorno Esperado</div>
+                <div class="metric-subtitle">Baseado no ROI</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="total-budget">R$ 0</div>
-                <div class="metric-label">Orçamento Total</div>
+            
+            <!-- Indicadores de Eficiência -->
+            <div class="stat-card premium-metric executive-metric efficiency">
+                <div class="metric-icon">🎯</div>
+                <div class="metric-number" id="efficiency-index">0</div>
+                <div class="metric-label">Índice de Eficiência</div>
+                <div class="metric-subtitle">ROI/Esforço</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="active-projects">0</div>
-                <div class="metric-label">Em Andamento</div>
+            
+            <div class="stat-card premium-metric executive-metric efficiency">
+                <div class="metric-icon">⏱️</div>
+                <div class="metric-number" id="avg-delivery-time">0</div>
+                <div class="metric-label">Tempo Médio</div>
+                <div class="metric-subtitle">Dias úteis</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="high-priority">0</div>
-                <div class="metric-label">Alta Prioridade</div>
+            
+            <!-- Indicadores de Qualidade -->
+            <div class="stat-card premium-metric executive-metric quality">
+                <div class="metric-icon">🏆</div>
+                <div class="metric-number" id="success-rate">0%</div>
+                <div class="metric-label">Taxa de Sucesso</div>
+                <div class="metric-subtitle">Projetos no prazo</div>
             </div>
-            <div class="stat-card premium-metric">
-                <div class="metric-number" id="effort-deviation">0%</div>
-                <div class="metric-label">Desvio Esforço</div>
+            
+            <div class="stat-card premium-metric executive-metric quality">
+                <div class="metric-icon">🚀</div>
+                <div class="metric-number" id="innovation-index">0</div>
+                <div class="metric-label">Índice de Inovação</div>
+                <div class="metric-subtitle">Projetos especiais</div>
             </div>
         </div>
         
@@ -1256,23 +1459,36 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="project-stage">Etapa Atual</label>
-                        <select class="form-select" id="project-stage">
-                            <option value="1">1. Planejamento</option>
-                            <option value="2">2. Desenvolvimento</option>
-                            <option value="3">3. Testes</option>
-                            <option value="4">4. Implementação</option>
-                            <option value="5">5. Finalização</option>
-                        </select>
+                        <label class="form-label" for="project-stage">Etapa Atual: <span id="stage-display">1. Planejamento</span></label>
+                        <div class="stage-slider-container">
+                            <input type="range" class="stage-slider" id="project-stage" min="1" max="5" value="1">
+                            <div class="stage-labels">
+                                <span class="stage-label">Planejamento</span>
+                                <span class="stage-label">Desenvolvimento</span>
+                                <span class="stage-label">Testes</span>
+                                <span class="stage-label">Implementação</span>
+                                <span class="stage-label">Finalização</span>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="project-priority">Prioridade</label>
-                        <select class="form-select" id="project-priority">
-                            <option value="baixa">Baixa</option>
-                            <option value="média">Média</option>
-                            <option value="alta">Alta</option>
-                        </select>
+                        <div class="priority-selector">
+                            <div class="priority-option" data-priority="baixa">
+                                <div class="priority-color priority-baixa"></div>
+                                <span>Baixa</span>
+                            </div>
+                            <div class="priority-option" data-priority="média">
+                                <div class="priority-color priority-média"></div>
+                                <span>Média</span>
+                            </div>
+                            <div class="priority-option" data-priority="alta">
+                                <div class="priority-color priority-alta"></div>
+                                <span>Alta</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="project-priority" value="baixa">
                     </div>
                 </div>
                 
@@ -1333,23 +1549,36 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="project-stage">Etapa Atual</label>
-                        <select class="form-select" id="project-stage">
-                            <option value="1">1. Planejamento</option>
-                            <option value="2">2. Desenvolvimento</option>
-                            <option value="3">3. Testes</option>
-                            <option value="4">4. Implementação</option>
-                            <option value="5">5. Finalização</option>
-                        </select>
+                        <label class="form-label" for="project-stage">Etapa Atual: <span id="stage-display">1. Planejamento</span></label>
+                        <div class="stage-slider-container">
+                            <input type="range" class="stage-slider" id="project-stage" min="1" max="5" value="1">
+                            <div class="stage-labels">
+                                <span class="stage-label">Planejamento</span>
+                                <span class="stage-label">Desenvolvimento</span>
+                                <span class="stage-label">Testes</span>
+                                <span class="stage-label">Implementação</span>
+                                <span class="stage-label">Finalização</span>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="project-priority">Prioridade</label>
-                        <select class="form-select" id="project-priority">
-                            <option value="baixa">Baixa</option>
-                            <option value="média">Média</option>
-                            <option value="alta">Alta</option>
-                        </select>
+                        <div class="priority-selector">
+                            <div class="priority-option" data-priority="baixa">
+                                <div class="priority-color priority-baixa"></div>
+                                <span>Baixa</span>
+                            </div>
+                            <div class="priority-option" data-priority="média">
+                                <div class="priority-color priority-média"></div>
+                                <span>Média</span>
+                            </div>
+                            <div class="priority-option" data-priority="alta">
+                                <div class="priority-color priority-alta"></div>
+                                <span>Alta</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="project-priority" value="baixa">
                     </div>
                 </div>
                 
@@ -1426,6 +1655,41 @@
                     filterAndSortProjects();
                 });
             }
+            
+            // Slider de etapa
+            const stageSlider = document.getElementById('project-stage');
+            const stageDisplay = document.getElementById('stage-display');
+            
+            if (stageSlider && stageDisplay) {
+                stageSlider.addEventListener('input', function() {
+                    const stage = parseInt(this.value);
+                    const stageNames = {
+                        1: '1. Planejamento',
+                        2: '2. Desenvolvimento', 
+                        3: '3. Testes',
+                        4: '4. Implementação',
+                        5: '5. Finalização'
+                    };
+                    stageDisplay.textContent = stageNames[stage];
+                });
+            }
+            
+            // Seletor de prioridades
+            document.querySelectorAll('.priority-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remover seleção anterior
+                    document.querySelectorAll('.priority-option').forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Selecionar opção atual
+                    this.classList.add('selected');
+                    
+                    // Atualizar input hidden
+                    const priorityInput = document.getElementById('project-priority');
+                    if (priorityInput) {
+                        priorityInput.value = this.dataset.priority;
+                    }
+                });
+            });
         }
         
         async function loadProjects() {
@@ -1597,26 +1861,34 @@
             const avgROI = projects.length > 0 ? Math.round(projects.reduce((sum, p) => sum + p.roi, 0) / projects.length) : 0;
             const totalBudget = projects.reduce((sum, p) => sum + p.budget, 0);
             
-            // Calcular Score de Eficiência (ROI médio / esforço médio)
+            // KPIs Executivos - Indicadores de Progresso
+            const completionRate = totalProjects > 0 ? Math.round((completedProjects / totalProjects) * 100) : 0;
+            const velocityScore = Math.round(completedProjects * 0.3 + activeProjects * 0.7); // Simulação de velocidade
+            
+            // KPIs Executivos - Indicadores Financeiros
+            const expectedReturn = Math.round(totalBudget * (1 + avgROI / 100));
+            const totalInvestment = totalBudget;
+            
+            // KPIs Executivos - Indicadores de Eficiência
             const avgEffort = projects.length > 0 ? projects.reduce((sum, p) => sum + p.effort, 0) / projects.length : 0;
-            const efficiencyScore = avgEffort > 0 ? Math.round((avgROI / avgEffort) * 100) : 0;
+            const efficiencyIndex = avgEffort > 0 ? Math.round((avgROI / avgEffort) * 100) : 0;
+            const avgDeliveryTime = projects.length > 0 ? Math.round(projects.reduce((sum, p) => sum + calculateWorkDays(p.effort), 0) / projects.length) : 0;
             
-            // Calcular Desvio de Esforço (comparar esforço planejado vs real)
-            const effortDeviation = projects.length > 0 ? 
-                Math.round(projects.reduce((sum, p) => {
-                    const plannedEffort = p.effort;
-                    const actualEffort = p.effort * (p.currentStage / 5); // Simulação
-                    return sum + ((actualEffort / plannedEffort) - 1) * 100;
-                }, 0) / projects.length) : 0;
+            // KPIs Executivos - Indicadores de Qualidade
+            const onTimeProjects = projects.filter(p => p.currentStage >= 4).length; // Simulação de projetos no prazo
+            const successRate = totalProjects > 0 ? Math.round((onTimeProjects / totalProjects) * 100) : 0;
+            const innovationProjects = projects.filter(p => p.category === 'inovacao').length;
+            const innovationIndex = Math.round((innovationProjects / totalProjects) * 100);
             
-            document.getElementById('total-projects').textContent = totalProjects;
-            document.getElementById('completed-projects').textContent = completedProjects;
-            document.getElementById('active-projects').textContent = activeProjects;
-            document.getElementById('high-priority').textContent = highPriorityProjects;
-            document.getElementById('avg-roi').textContent = avgROI + '%';
-            document.getElementById('total-budget').textContent = 'R$ ' + totalBudget.toLocaleString('pt-BR');
-            document.getElementById('efficiency-score').textContent = efficiencyScore;
-            document.getElementById('effort-deviation').textContent = effortDeviation + '%';
+            // Atualizar elementos DOM
+            document.getElementById('completion-rate').textContent = completionRate + '%';
+            document.getElementById('velocity-score').textContent = velocityScore;
+            document.getElementById('total-investment').textContent = 'R$ ' + totalInvestment.toLocaleString('pt-BR');
+            document.getElementById('expected-return').textContent = 'R$ ' + expectedReturn.toLocaleString('pt-BR');
+            document.getElementById('efficiency-index').textContent = efficiencyIndex;
+            document.getElementById('avg-delivery-time').textContent = avgDeliveryTime;
+            document.getElementById('success-rate').textContent = successRate + '%';
+            document.getElementById('innovation-index').textContent = innovationIndex;
         }
         
         function openProjectModal(projectId = null) {
@@ -1707,6 +1979,43 @@
         }
         
         function editProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            // Preencher formulário
+            document.getElementById('project-name').value = project.name;
+            document.getElementById('project-description').value = project.description || '';
+            document.getElementById('project-category').value = project.category;
+            
+            // Atualizar slider de etapa
+            const stageSlider = document.getElementById('project-stage');
+            const stageDisplay = document.getElementById('stage-display');
+            if (stageSlider && stageDisplay) {
+                stageSlider.value = project.currentStage;
+                const stageNames = {
+                    1: '1. Planejamento',
+                    2: '2. Desenvolvimento', 
+                    3: '3. Testes',
+                    4: '4. Implementação',
+                    5: '5. Finalização'
+                };
+                stageDisplay.textContent = stageNames[project.currentStage];
+            }
+            
+            // Atualizar seletor de prioridades
+            document.querySelectorAll('.priority-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.dataset.priority === project.priority) {
+                    option.classList.add('selected');
+                }
+            });
+            document.getElementById('project-priority').value = project.priority;
+            
+            document.getElementById('project-roi').value = project.roi;
+            document.getElementById('project-effort').value = project.effort;
+            document.getElementById('project-budget').value = project.budget;
+            
+            // Mostrar modal
             openProjectModal(projectId);
         }
         

@@ -2663,7 +2663,7 @@
                 await loadProjects();
                 setupEventListeners();
                 updateStats();
-                renderProjects();
+                renderConsolidatedView();
             } catch (error) {
                 console.error('Erro ao inicializar aplicação:', error);
                 showError('Erro ao carregar dados. Tente recarregar a página.');

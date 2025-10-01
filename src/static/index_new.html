@@ -3127,6 +3127,12 @@
         
         // Função para calcular priorização baseada em ROI e esforço
         function calculateProjectPriority(project) {
+            // Se o projeto já tem uma prioridade definida pelo usuário, usar ela
+            if (project.priority && ['alta', 'média', 'baixa'].includes(project.priority)) {
+                return project.priority;
+            }
+            
+            // Caso contrário, calcular baseado no ROI e esforço
             const roi = project.roi;
             const effort = project.effort;
             

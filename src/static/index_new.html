@@ -1356,7 +1356,7 @@
         
         .table {
             width: 100%;
-            min-width: 900px;
+            min-width: 700px;
             border-collapse: collapse;
             background: rgba(15, 23, 42, 0.8);
             border-radius: 8px;
@@ -1368,7 +1368,7 @@
             color: #f8fafc;
             font-weight: 700;
             padding: 10px 6px;
-            text-align: left;
+            text-align: center;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -2013,7 +2013,7 @@
             }
             
             .table {
-                min-width: 800px;
+                min-width: 600px;
                 font-size: 0.75rem;
             }
             
@@ -2147,7 +2147,7 @@
             }
             
             .table {
-                min-width: 750px;
+                min-width: 550px;
                 font-size: 0.7rem;
             }
             
@@ -3478,16 +3478,16 @@
                 <table class="table premium-table">
                     <thead>
                         <tr>
-                            <th style="min-width: 140px;">Projeto</th>
-                            <th style="min-width: 70px;">Prioridade</th>
-                            <th style="min-width: 50px;">ROI</th>
-                            <th style="min-width: 60px;">Esforço</th>
-                            <th style="min-width: 70px;">Dias Úteis</th>
-                            <th style="min-width: 70px;">Eficiência</th>
-                            <th style="min-width: 100px;">Progresso</th>
-                            <th style="min-width: 100px;">Orçamento Externo</th>
-                            <th style="min-width: 100px;">Custo Interno</th>
-                            <th style="min-width: 100px;">Economia</th>
+                            <th style="min-width: 70px;">Projeto</th>
+                            <th style="min-width: 60px;">Prioridade</th>
+                            <th style="min-width: 40px;">ROI</th>
+                            <th style="min-width: 50px;">Esforço</th>
+                            <th style="min-width: 60px;">Dias Úteis</th>
+                            <th style="min-width: 60px;">Eficiência</th>
+                            <th style="min-width: 80px;">Progresso</th>
+                            <th style="min-width: 80px;">Orçamento Externo</th>
+                            <th style="min-width: 80px;">Custo Interno</th>
+                            <th style="min-width: 80px;">Economia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -3501,23 +3501,23 @@
                             
                             return `
                                 <tr onclick="showProjectDetails(${project.id})" style="cursor: pointer;">
-                                    <td>
-                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.85rem;">${project.name}</div>
+                                    <td style="text-align: center;">
+                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.75rem; max-width: 65px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${project.name}">${project.name}</div>
                                     </td>
-                                    <td>
-                                        <span class="premium-badge priority-${calculatedPriority}-table" style="font-size: 0.7rem; padding: 4px 8px;">
+                                    <td style="text-align: center;">
+                                        <span class="premium-badge priority-${calculatedPriority}-table" style="font-size: 0.65rem; padding: 3px 6px;">
                                             ${calculatedPriority}
                                         </span>
                                     </td>
-                                    <td><span class="roi-value" style="font-size: 0.75rem;">${project.roi}%</span></td>
-                                    <td><span class="effort-value" style="font-size: 0.75rem;">${project.effort}h</span></td>
-                                    <td><span class="work-days-value" style="font-size: 0.75rem;">${workDays}d</span></td>
-                                    <td><span class="efficiency-score" style="font-size: 0.75rem;">${efficiencyScore}</span></td>
-                                    <td>${renderStageProgressBar(project.currentStage)}</td>
-                                    <td><span class="external-budget" style="font-size: 0.8rem;">R$ ${(project.budget/1000).toFixed(0)}k</span></td>
-                                    <td><span class="internal-cost" style="font-size: 0.8rem;">R$ ${(internalCost/1000).toFixed(0)}k</span></td>
-                                    <td>
-                                        <span class="savings-value ${savings >= 0 ? 'positive' : 'negative'}" style="font-size: 0.8rem;">
+                                    <td style="text-align: center;"><span class="roi-value" style="font-size: 0.75rem;">${project.roi}%</span></td>
+                                    <td style="text-align: center;"><span class="effort-value" style="font-size: 0.75rem;">${project.effort}h</span></td>
+                                    <td style="text-align: center;"><span class="work-days-value" style="font-size: 0.75rem;">${workDays}d</span></td>
+                                    <td style="text-align: center;"><span class="efficiency-score" style="font-size: 0.75rem;">${efficiencyScore}</span></td>
+                                    <td style="text-align: center;">${renderStageProgressBar(project.currentStage)}</td>
+                                    <td style="text-align: center;"><span class="external-budget" style="font-size: 0.75rem;">R$ ${(project.budget/1000).toFixed(0)}k</span></td>
+                                    <td style="text-align: center;"><span class="internal-cost" style="font-size: 0.75rem;">R$ ${(internalCost/1000).toFixed(0)}k</span></td>
+                                    <td style="text-align: center;">
+                                        <span class="savings-value ${savings >= 0 ? 'positive' : 'negative'}" style="font-size: 0.75rem;">
                                             R$ ${(savings/1000).toFixed(0)}k (${savingsPercentage}%)
                                         </span>
                                     </td>

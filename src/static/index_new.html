@@ -2281,16 +2281,8 @@
         
         <div class="main-content">
             <div class="tabs">
-                <button class="tab premium-tab active" data-tab="dashboard">Todos os Projetos</button>
-                <button class="tab premium-tab" data-tab="consolidated">Visão Consolidada</button>
+                <button class="tab premium-tab active" data-tab="consolidated">Visão Consolidada</button>
                 <button class="tab premium-tab" data-tab="timeline">Evolução Temporal</button>
-            </div>
-            
-            <div class="tab-content active" id="dashboard">
-                <button class="add-project-btn premium-button" onclick="openProjectModal()">+ Novo Projeto</button>
-                <div class="projects-grid" id="projects-grid">
-                    <div class="loading">Carregando projetos...</div>
-                </div>
             </div>
             
             <div class="tab-content" id="timeline">
@@ -2317,10 +2309,11 @@
                 </div>
             </div>
             
-            <div class="tab-content" id="consolidated">
+            <div class="tab-content active" id="consolidated">
                 <div class="consolidated-header">
                     <h3>Visão Consolidada de Projetos</h3>
                     <p>Projetos ordenados por priorização baseada em ROI e esforço</p>
+                    <button class="add-project-btn premium-button" onclick="openProjectModal()">+ Novo Projeto</button>
                 </div>
                 
                 <div class="priority-matrix">
@@ -2815,8 +2808,6 @@
                 renderTimelineCharts();
             } else if (tabName === 'consolidated') {
                 renderConsolidatedView();
-            } else {
-                renderProjects();
             }
         }
         
@@ -3132,9 +3123,6 @@
             
             // Atualizar tab ativa
             switch(currentTab) {
-                case 'all':
-                    renderProjects();
-                    break;
                 case 'consolidated':
                     renderConsolidatedView();
                     break;
@@ -3142,7 +3130,7 @@
                     renderTimelineCharts();
                     break;
                 default:
-                    renderProjects();
+                    renderConsolidatedView();
             }
         }
         

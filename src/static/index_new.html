@@ -1315,6 +1315,20 @@
             background: linear-gradient(90deg, #2563eb, #0891b2);
         }
         
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .table-header h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 0;
+        }
+        
         .projects-table-container h4 {
             font-size: 1.25rem;
             font-weight: 700;
@@ -2019,6 +2033,12 @@
                 overflow-x: auto;
             }
             
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
             .table {
                 font-size: 0.75rem;
             }
@@ -2313,7 +2333,6 @@
                 <div class="consolidated-header">
                     <h3>Visão Consolidada de Projetos</h3>
                     <p>Projetos ordenados por priorização baseada em ROI e esforço</p>
-                    <button class="add-project-btn premium-button" onclick="openProjectModal()">+ Novo Projeto</button>
                 </div>
                 
                 <div class="priority-matrix">
@@ -2345,7 +2364,10 @@
                 </div>
                 
                 <div class="projects-table-container">
-                    <h4>Lista de Projetos Priorizados</h4>
+                    <div class="table-header">
+                        <h4>Lista de Projetos Priorizados</h4>
+                        <button class="add-project-btn premium-button" onclick="openProjectModal()">+ Novo Projeto</button>
+                    </div>
                     <div class="table-controls">
                         <div class="filter-group">
                             <label>Filtrar por:</label>

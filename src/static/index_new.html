@@ -2812,67 +2812,21 @@
         }
         
         function renderProjects() {
-            let filteredProjects = projects;
-            
+            // Esta função agora só é usada para renderizar a visão consolidada
+            // ou outras visualizações específicas
             if (currentTab === 'consolidated') {
                 renderConsolidatedView();
                 return;
             }
             
-            if (currentTab !== 'dashboard') {
-                filteredProjects = projects.filter(project => project.category === currentTab);
-            }
-            
-            const gridId = currentTab === 'dashboard' ? 'projects-grid' : `${currentTab}-grid`;
-            const grid = document.getElementById(gridId);
-            
-            if (filteredProjects.length === 0) {
-                grid.innerHTML = '<div class="loading">Nenhum projeto encontrado</div>';
+            // Para outras abas, usar renderização específica
+            if (currentTab === 'timeline') {
+                renderTimelineCharts();
                 return;
             }
             
-            grid.innerHTML = filteredProjects.map(project => {
-                const progressPercentage = (project.currentStage / 5) * 100;
-                const workDays = calculateWorkDays(project.effort);
-                return `
-                <div class="project-card premium-card" onclick="showProjectDetails(${project.id})">
-                    <div class="project-header">
-                        <div>
-                            <div class="project-title">${project.name}</div>
-                            <div class="project-category">${getCategoryName(project.category)}</div>
-                        </div>
-                        <span class="premium-badge priority-${project.priority}">${project.priority}</span>
-                    </div>
-                    
-                    <div class="project-description">${project.description || 'Sem descrição'}</div>
-                    
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Progresso do Projeto</span>
-                            <span class="progress-percentage">${Math.round(progressPercentage)}%</span>
-                        </div>
-                        <div class="premium-progress">
-                            <div class="premium-progress-fill" style="width: ${progressPercentage}%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <div class="metric-label">Etapa</div>
-                            <div class="metric-value">${getStageName(project.currentStage)}</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">ROI</div>
-                            <div class="metric-value roi-value">${project.roi}%</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Dias Úteis</div>
-                            <div class="metric-value work-days-value">${workDays} dias</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            }).join('');
+            // Se chegou aqui, não há elemento para renderizar
+            console.warn('Tentativa de renderizar projetos sem elemento válido');
         }
         
         function getCategoryName(category) {

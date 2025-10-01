@@ -2954,6 +2954,30 @@
             document.getElementById('kpi-explanation-modal').classList.remove('active');
         }
         
+        // Função para atualizar todos os componentes da plataforma
+        async function refreshAllComponents() {
+            // Recarregar projetos do backend
+            await loadProjects();
+            
+            // Atualizar estatísticas (KPIs)
+            updateStats();
+            
+            // Atualizar tab ativa
+            switch(currentTab) {
+                case 'all':
+                    renderProjects();
+                    break;
+                case 'consolidated':
+                    renderConsolidatedView();
+                    break;
+                case 'timeline':
+                    renderTimelineCharts();
+                    break;
+                default:
+                    renderProjects();
+            }
+        }
+        
         async function handleProjectSubmit(e) {
             e.preventDefault();
             
@@ -2997,10 +3021,13 @@
                     throw new Error('Erro ao salvar projeto');
                 }
                 
-                await loadProjects();
-                updateStats();
-                renderProjects();
+                // Fechar modal
                 closeProjectModal();
+                
+                // Atualizar todos os componentes da plataforma
+                await refreshAllComponents();
+                
+                // Mostrar mensagem de sucesso
                 showSuccess('Projeto salvo com sucesso!');
                 
             } catch (error) {
@@ -3064,9 +3091,10 @@
                     throw new Error('Erro ao excluir projeto');
                 }
                 
-                await loadProjects();
-                updateStats();
-                renderProjects();
+                // Atualizar todos os componentes da plataforma
+                await refreshAllComponents();
+                
+                // Mostrar mensagem de sucesso
                 showSuccess('Projeto excluído com sucesso!');
                 
             } catch (error) {

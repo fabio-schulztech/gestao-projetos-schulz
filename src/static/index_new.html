@@ -1356,11 +1356,11 @@
         
         .table {
             width: 100%;
-            min-width: 700px;
             border-collapse: collapse;
             background: rgba(15, 23, 42, 0.8);
             border-radius: 8px;
             overflow: hidden;
+            table-layout: auto;
         }
         
         .table th {
@@ -2013,7 +2013,6 @@
             }
             
             .table {
-                min-width: 600px;
                 font-size: 0.75rem;
             }
             
@@ -2147,7 +2146,6 @@
             }
             
             .table {
-                min-width: 550px;
                 font-size: 0.7rem;
             }
             
@@ -3478,22 +3476,20 @@
                 <table class="table premium-table">
                     <thead>
                         <tr>
-                            <th style="min-width: 70px;">Projeto</th>
-                            <th style="min-width: 60px;">Prioridade</th>
-                            <th style="min-width: 40px;">ROI</th>
-                            <th style="min-width: 50px;">Esforço</th>
-                            <th style="min-width: 60px;">Dias Úteis</th>
-                            <th style="min-width: 60px;">Eficiência</th>
-                            <th style="min-width: 80px;">Progresso</th>
-                            <th style="min-width: 80px;">Orçamento Externo</th>
-                            <th style="min-width: 80px;">Custo Interno</th>
-                            <th style="min-width: 80px;">Economia</th>
+                            <th>Projeto</th>
+                            <th>Prioridade</th>
+                            <th>ROI</th>
+                            <th>Esforço</th>
+                            <th>Dias Úteis</th>
+                            <th>Progresso</th>
+                            <th>Orçamento Externo</th>
+                            <th>Custo Interno</th>
+                            <th>Economia</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${filteredProjects.map(project => {
                             const calculatedPriority = calculateProjectPriority(project);
-                            const efficiencyScore = calculateEfficiencyScore(project);
                             const workDays = calculateWorkDays(project.effort);
                             const internalCost = project.effort * 210;
                             const savings = project.budget - internalCost;
@@ -3512,7 +3508,6 @@
                                     <td style="text-align: center;"><span class="roi-value" style="font-size: 0.75rem;">${project.roi}%</span></td>
                                     <td style="text-align: center;"><span class="effort-value" style="font-size: 0.75rem;">${project.effort}h</span></td>
                                     <td style="text-align: center;"><span class="work-days-value" style="font-size: 0.75rem;">${workDays}d</span></td>
-                                    <td style="text-align: center;"><span class="efficiency-score" style="font-size: 0.75rem;">${efficiencyScore}</span></td>
                                     <td style="text-align: center;">${renderStageProgressBar(project.currentStage)}</td>
                                     <td style="text-align: center;"><span class="external-budget" style="font-size: 0.75rem;">R$ ${(project.budget/1000).toFixed(0)}k</span></td>
                                     <td style="text-align: center;"><span class="internal-cost" style="font-size: 0.75rem;">R$ ${(internalCost/1000).toFixed(0)}k</span></td>

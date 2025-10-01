@@ -151,7 +151,7 @@
         
         .stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 1rem;
             margin-bottom: 1.5rem;
@@ -1401,6 +1401,26 @@
             color: #f59e0b;
         }
         
+        .external-budget {
+            font-weight: 700;
+            color: #8b5cf6;
+        }
+        
+        .internal-cost {
+            font-weight: 700;
+            color: #06b6d4;
+        }
+        
+        .savings-value.positive {
+            font-weight: 700;
+            color: #22c55e;
+        }
+        
+        .savings-value.negative {
+            font-weight: 700;
+            color: #ef4444;
+        }
+        
         .work-days-value {
             font-weight: 700;
             color: #06b6d4;
@@ -1802,6 +1822,10 @@
             border-left: 4px solid #22c55e;
         }
         
+        .executive-metric.savings {
+            border-left: 4px solid #10b981;
+        }
+        
         .executive-metric.efficiency {
             border-left: 4px solid #3b82f6;
         }
@@ -1892,6 +1916,10 @@
         }
         
         .executive-metric.financial {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .executive-metric.savings {
             border-left: 4px solid var(--success-color);
         }
         
@@ -2138,6 +2166,18 @@
                 <div class="metric-subtitle">Baseado no ROI</div>
             </div>
             
+            <div class="stat-card executive-metric savings" onclick="showKPIExplanation('total-savings')">
+                <div class="metric-number" id="total-savings">R$ 0</div>
+                <div class="metric-label">Economia Total</div>
+                <div class="metric-subtitle">Interno vs Externo</div>
+            </div>
+            
+            <div class="stat-card executive-metric savings" onclick="showKPIExplanation('savings-percentage')">
+                <div class="metric-number" id="savings-percentage">0%</div>
+                <div class="metric-label">% de Economia</div>
+                <div class="metric-subtitle">Redução de custos</div>
+            </div>
+            
             <!-- Indicadores de Eficiência -->
             <div class="stat-card executive-metric efficiency" onclick="showKPIExplanation('efficiency-index')">
                 <div class="metric-number" id="efficiency-index">0</div>
@@ -2329,8 +2369,18 @@
                 </div>
                 
                 <div class="project-details-section">
-                    <div class="project-details-label">Orçamento</div>
+                    <div class="project-details-label">Orçamento Externo</div>
                     <div class="project-details-value" id="details-project-budget"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Custo Interno</div>
+                    <div class="project-details-value" id="details-project-internal-cost"></div>
+                </div>
+                
+                <div class="project-details-section">
+                    <div class="project-details-label">Economia</div>
+                    <div class="project-details-value" id="details-project-savings"></div>
                 </div>
                 
                 <div class="project-details-section full-width">
@@ -2786,15 +2836,20 @@
             const activeProjects = projects.filter(p => p.currentStage > 1 && p.currentStage < 5).length;
             const highPriorityProjects = projects.filter(p => p.priority === 'alta').length;
             const avgROI = projects.length > 0 ? Math.round(projects.reduce((sum, p) => sum + p.roi, 0) / projects.length) : 0;
-            const totalBudget = projects.reduce((sum, p) => sum + p.budget, 0);
+            
+            // Cálculos de custos: externo vs interno
+            const totalBudgetExternal = projects.reduce((sum, p) => sum + p.budget, 0); // Custo externo
+            const totalHours = projects.reduce((sum, p) => sum + p.effort, 0);
+            const totalBudgetInternal = totalHours * 210; // Custo interno (R$ 210/h)
+            const totalSavings = totalBudgetExternal - totalBudgetInternal; // Economia total
             
             // KPIs Executivos - Indicadores de Progresso
             const completionRate = totalProjects > 0 ? Math.round((completedProjects / totalProjects) * 100) : 0;
             const velocityScore = Math.round(completedProjects * 0.3 + activeProjects * 0.7); // Simulação de velocidade
             
-            // KPIs Executivos - Indicadores Financeiros
-            const expectedReturn = Math.round(totalBudget * (1 + avgROI / 100));
-            const totalInvestment = totalBudget;
+            // KPIs Executivos - Indicadores Financeiros (baseados em custos internos)
+            const expectedReturn = Math.round(totalBudgetInternal * (1 + avgROI / 100));
+            const totalInvestment = totalBudgetInternal; // Investimento interno real
             
             // KPIs Executivos - Indicadores de Eficiência
             const avgEffort = projects.length > 0 ? projects.reduce((sum, p) => sum + p.effort, 0) / projects.length : 0;
@@ -2807,15 +2862,32 @@
             const innovationProjects = projects.filter(p => p.category === 'inovacao').length;
             const innovationIndex = Math.round((innovationProjects / totalProjects) * 100);
             
+            // Calcular KPIs de Savings
+            const savingsPercentage = totalBudgetExternal > 0 ? Math.round((totalSavings / totalBudgetExternal) * 100) : 0;
+            
             // Atualizar elementos DOM
             document.getElementById('completion-rate').textContent = completionRate + '%';
             document.getElementById('velocity-score').textContent = velocityScore;
             document.getElementById('total-investment').textContent = 'R$ ' + totalInvestment.toLocaleString('pt-BR');
             document.getElementById('expected-return').textContent = 'R$ ' + expectedReturn.toLocaleString('pt-BR');
+            document.getElementById('total-savings').textContent = 'R$ ' + totalSavings.toLocaleString('pt-BR');
+            document.getElementById('savings-percentage').textContent = savingsPercentage + '%';
             document.getElementById('efficiency-index').textContent = efficiencyIndex;
             document.getElementById('avg-delivery-time').textContent = avgDeliveryTime;
             document.getElementById('success-rate').textContent = successRate + '%';
             document.getElementById('innovation-index').textContent = innovationIndex;
+            
+            // Armazenar dados para uso em outras funções
+            window.projectStats = {
+                totalBudgetExternal,
+                totalBudgetInternal,
+                totalSavings,
+                totalHours,
+                avgROI,
+                totalProjects,
+                completedProjects,
+                activeProjects
+            };
         }
         
         function openProjectModal(projectId = null) {
@@ -2870,6 +2942,14 @@
             document.getElementById('details-project-effort').textContent = `${project.effort}h`;
             document.getElementById('details-project-budget').textContent = `R$ ${project.budget.toLocaleString('pt-BR')}`;
             
+            // Calcular custos internos e economia
+            const internalCost = project.effort * 210;
+            const savings = project.budget - internalCost;
+            const savingsPercentage = project.budget > 0 ? Math.round((savings / project.budget) * 100) : 0;
+            
+            document.getElementById('details-project-internal-cost').textContent = `R$ ${internalCost.toLocaleString('pt-BR')}`;
+            document.getElementById('details-project-savings').textContent = `R$ ${savings.toLocaleString('pt-BR')} (${savingsPercentage}%)`;
+            
             // Mostrar modal
             document.getElementById('project-details-modal').classList.add('active');
         }
@@ -2897,16 +2977,30 @@
                 'total-investment': {
                     title: 'Investimento Total',
                     value: document.getElementById('total-investment').textContent,
-                    objective: 'Totalizar o capital alocado em todos os projetos. Essencial para controle orçamentário e análise de portfólio.',
-                    formula: 'Soma de todos os orçamentos',
-                    calculation: `Projetos: ${projects.length}\n\nCálculo: ${projects.map(p => `R$ ${p.budget.toLocaleString('pt-BR')}`).join(' + ')}\n\nTotal = ${document.getElementById('total-investment').textContent}`
+                    objective: 'Custo total para desenvolvimento interno dos projetos (R$ 210/h). Representa o investimento real da empresa.',
+                    formula: 'Σ (Esforço × R$ 210/h)',
+                    calculation: `Cálculo por projeto:\n${projects.map(p => `${p.name}: ${p.effort}h × R$ 210 = R$ ${(p.effort * 210).toLocaleString('pt-BR')}`).join('\n')}\n\nTotal = ${document.getElementById('total-investment').textContent}`
                 },
                 'expected-return': {
                     title: 'Retorno Esperado',
                     value: document.getElementById('expected-return').textContent,
-                    objective: 'Estimar o retorno financeiro total baseado no ROI projetado de cada projeto. Auxilia na justificativa de investimentos.',
-                    formula: 'Σ (Orçamento × ROI%)',
-                    calculation: `Cálculo por projeto:\n${projects.map(p => `${p.name}: R$ ${p.budget.toLocaleString('pt-BR')} × ${p.roi}% = R$ ${((p.budget * p.roi) / 100).toLocaleString('pt-BR')}`).join('\n')}\n\nTotal = ${document.getElementById('expected-return').textContent}`
+                    objective: 'Retorno financeiro esperado baseado no ROI projetado e custo interno. Justifica o investimento interno.',
+                    formula: 'Investimento Interno × (1 + ROI Médio%)',
+                    calculation: `Investimento Interno: ${document.getElementById('total-investment').textContent}\nROI Médio: ${(projects.reduce((acc, p) => acc + p.roi, 0) / projects.length).toFixed(1)}%\n\nCálculo: ${document.getElementById('total-investment').textContent} × (1 + ${(projects.reduce((acc, p) => acc + p.roi, 0) / projects.length).toFixed(1)}%) = ${document.getElementById('expected-return').textContent}`
+                },
+                'total-savings': {
+                    title: 'Economia Total',
+                    value: document.getElementById('total-savings').textContent,
+                    objective: 'Diferença entre custo externo (orçamento) e custo interno (R$ 210/h). Demonstra economia por desenvolvimento interno.',
+                    formula: 'Custo Externo - Custo Interno',
+                    calculation: `Custo Externo (Orçamentos): R$ ${projects.reduce((acc, p) => acc + p.budget, 0).toLocaleString('pt-BR')}\nCusto Interno (${projects.reduce((acc, p) => acc + p.effort, 0)}h × R$ 210): R$ ${(projects.reduce((acc, p) => acc + p.effort, 0) * 210).toLocaleString('pt-BR')}\n\nEconomia = R$ ${projects.reduce((acc, p) => acc + p.budget, 0).toLocaleString('pt-BR')} - R$ ${(projects.reduce((acc, p) => acc + p.effort, 0) * 210).toLocaleString('pt-BR')} = ${document.getElementById('total-savings').textContent}`
+                },
+                'savings-percentage': {
+                    title: '% de Economia',
+                    value: document.getElementById('savings-percentage').textContent,
+                    objective: 'Percentual de economia obtida com desenvolvimento interno vs externo. Quanto maior, maior o benefício financeiro.',
+                    formula: '(Economia / Custo Externo) × 100',
+                    calculation: `Economia: ${document.getElementById('total-savings').textContent}\nCusto Externo: R$ ${projects.reduce((acc, p) => acc + p.budget, 0).toLocaleString('pt-BR')}\n\nCálculo: (${document.getElementById('total-savings').textContent} / R$ ${projects.reduce((acc, p) => acc + p.budget, 0).toLocaleString('pt-BR')}) × 100 = ${document.getElementById('savings-percentage').textContent}`
                 },
                 'efficiency-index': {
                     title: 'Índice de Eficiência',
@@ -3333,7 +3427,9 @@
                             <th>Dias Úteis</th>
                             <th>Eficiência</th>
                             <th>Progresso</th>
-                            <th>Orçamento</th>
+                            <th>Orçamento Externo</th>
+                            <th>Custo Interno</th>
+                            <th>Economia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -3341,6 +3437,9 @@
                             const calculatedPriority = calculateProjectPriority(project);
                             const efficiencyScore = calculateEfficiencyScore(project);
                             const workDays = calculateWorkDays(project.effort);
+                            const internalCost = project.effort * 210;
+                            const savings = project.budget - internalCost;
+                            const savingsPercentage = project.budget > 0 ? Math.round((savings / project.budget) * 100) : 0;
                             
                             return `
                                 <tr onclick="showProjectDetails(${project.id})" style="cursor: pointer;">
@@ -3358,7 +3457,13 @@
                                     <td><span class="work-days-value">${workDays} dias</span></td>
                                     <td><span class="efficiency-score">${efficiencyScore}</span></td>
                                     <td>${renderStageProgressBar(project.currentStage)}</td>
-                                    <td>R$ ${project.budget.toLocaleString('pt-BR')}</td>
+                                    <td><span class="external-budget">R$ ${project.budget.toLocaleString('pt-BR')}</span></td>
+                                    <td><span class="internal-cost">R$ ${internalCost.toLocaleString('pt-BR')}</span></td>
+                                    <td>
+                                        <span class="savings-value ${savings >= 0 ? 'positive' : 'negative'}">
+                                            R$ ${savings.toLocaleString('pt-BR')} (${savingsPercentage}%)
+                                        </span>
+                                    </td>
                                 </tr>
                             `;
                         }).join('')}

@@ -1360,7 +1360,7 @@
             background: rgba(15, 23, 42, 0.8);
             border-radius: 8px;
             overflow: hidden;
-            table-layout: auto;
+            table-layout: fixed;
         }
         
         .table th {
@@ -3476,14 +3476,14 @@
                 <table class="table premium-table">
                     <thead>
                         <tr>
-                            <th>Projeto</th>
+                            <th style="width: 120px;">Projeto</th>
                             <th>Prioridade</th>
                             <th>ROI</th>
                             <th>Esforço</th>
                             <th>Dias Úteis</th>
                             <th>Progresso</th>
-                            <th>Orçamento Externo</th>
-                            <th>Custo Interno</th>
+                            <th style="width: 70px;">Orçamento Externo</th>
+                            <th style="width: 70px;">Custo Interno</th>
                             <th>Economia</th>
                         </tr>
                     </thead>
@@ -3498,7 +3498,7 @@
                             return `
                                 <tr onclick="showProjectDetails(${project.id})" style="cursor: pointer;">
                                     <td style="text-align: center;">
-                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.75rem; max-width: 65px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${project.name}">${project.name}</div>
+                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.8rem;" title="${project.name}">${project.name}</div>
                                     </td>
                                     <td style="text-align: center;">
                                         <span class="premium-badge priority-${calculatedPriority}-table" style="font-size: 0.65rem; padding: 3px 6px;">

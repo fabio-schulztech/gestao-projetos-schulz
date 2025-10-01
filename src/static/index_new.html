@@ -1367,20 +1367,24 @@
             background: rgba(30, 41, 59, 0.9);
             color: #f8fafc;
             font-weight: 700;
-            padding: 10px 6px;
+            padding: 12px 6px;
             text-align: center;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             white-space: nowrap;
+            vertical-align: middle;
+            min-height: 50px;
         }
         
         .table td {
-            padding: 10px 6px;
+            padding: 12px 6px;
             border-bottom: 1px solid #334155;
             color: #f8fafc;
             font-size: 0.8rem;
-            white-space: nowrap;
+            white-space: normal;
+            vertical-align: middle;
+            min-height: 50px;
         }
         
         .table tr:hover {
@@ -2018,8 +2022,9 @@
             
             .table th,
             .table td {
-                padding: 8px 6px;
+                padding: 10px 6px;
                 font-size: 0.75rem;
+                min-height: 45px;
             }
             
             .stat-card {
@@ -2151,8 +2156,9 @@
             
             .table th,
             .table td {
-                padding: 6px 4px;
+                padding: 8px 4px;
                 font-size: 0.7rem;
+                min-height: 40px;
             }
             
             .premium-badge {
@@ -3497,8 +3503,8 @@
                             
                             return `
                                 <tr onclick="showProjectDetails(${project.id})" style="cursor: pointer;">
-                                    <td style="text-align: center;">
-                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.8rem;" title="${project.name}">${project.name}</div>
+                                    <td style="text-align: center; word-wrap: break-word; word-break: break-word;">
+                                        <div style="font-weight: 600; color: #f8fafc; font-size: 0.8rem; line-height: 1.3; max-width: 100%;" title="${project.name}">${project.name}</div>
                                     </td>
                                     <td style="text-align: center;">
                                         <span class="premium-badge priority-${calculatedPriority}-table" style="font-size: 0.65rem; padding: 3px 6px;">
